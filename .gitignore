@@ -47,3 +47,8 @@ alembic/versions/*.pyc
 
 # Static compiled
 *.min.js.map
+
+# Claude internals
+.claude/
+.MEMORY.md
+*.MEMORY.md
