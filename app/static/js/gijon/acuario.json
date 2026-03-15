@@ -1,0 +1,896 @@
+{
+  "name": "Acuario de Gijón",
+  "type": "composite",
+  "concejoPolygon": "c013",
+  "offsetX": 0.07,
+  "offsetZ": 0.2,
+  "rotateY": "Math.PI",
+  "heightOffset": 0.0,
+  "color": "0x8a9aaa",
+  "parts": [
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0504,
+        "height": 0.0336,
+        "depth": 0.0384
+      },
+      "position": [
+        0.0,
+        0.02328,
+        0.0
+      ],
+      "color": "0x8a9aaa"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.048,
+        "height": 0.0066,
+        "depth": 0.0006
+      },
+      "position": [
+        0.0,
+        0.03612,
+        0.01956
+      ],
+      "color": "0x5599bb",
+      "opacity": 0.5
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.048,
+        "height": 0.0066,
+        "depth": 0.0006
+      },
+      "position": [
+        0.0,
+        0.03612,
+        -0.01956
+      ],
+      "color": "0x5599bb",
+      "opacity": 0.5
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0066,
+        "depth": 0.036
+      },
+      "position": [
+        0.02556,
+        0.03612,
+        0.0
+      ],
+      "color": "0x5599bb",
+      "opacity": 0.5
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0552,
+        "height": 0.00156,
+        "depth": 0.0432
+      },
+      "position": [
+        0.0,
+        0.04086,
+        0.0
+      ],
+      "color": "0x42504a"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0264,
+        "height": 0.012,
+        "depth": 0.00072
+      },
+      "position": [
+        -0.0036,
+        0.02832,
+        0.0198
+      ],
+      "color": "0x5a6878"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00156,
+        "depth": 0.00084
+      },
+      "position": [
+        -0.0036,
+        0.03492,
+        0.02592
+      ],
+      "color": "0xc5d0d8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00156,
+        "depth": 0.00084
+      },
+      "position": [
+        -0.0036,
+        0.02892,
+        0.02592
+      ],
+      "color": "0xc5d0d8"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.0192,
+        0.00156,
+        -0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.0192,
+        0.00156,
+        0.0
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.0192,
+        0.00156,
+        0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0,
+        0.00156,
+        -0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0,
+        0.00156,
+        0.0
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0,
+        0.00156,
+        0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0192,
+        0.00156,
+        -0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0192,
+        0.00156,
+        0.0
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.00984,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0192,
+        0.00156,
+        0.0144
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0432,
+        "height": 0.00036,
+        "depth": 0.156
+      },
+      "position": [
+        0.0,
+        -0.0005,
+        -0.054
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0432,
+        "height": 0.0008,
+        "depth": 0.156
+      },
+      "position": [
+        0.0,
+        0.0003,
+        -0.054
+      ],
+      "color": "0x1a5070",
+      "opacity": 0.8
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0048,
+        "height": 0.00336,
+        "depth": 0.156
+      },
+      "position": [
+        -0.0228,
+        0.002,
+        -0.054
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0048,
+        "height": 0.00336,
+        "depth": 0.156
+      },
+      "position": [
+        0.0228,
+        0.002,
+        -0.054
+      ],
+      "color": "0x7a7870"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0504,
+        "height": 0.000135,
+        "depth": 0.000135
+      },
+      "position": [
+        0.0,
+        0.00132,
+        0.024
+      ],
+      "color": "0xeeeedd"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0864,
+        "height": 0.0168,
+        "depth": 0.0288
+      },
+      "position": [
+        -0.0696,
+        0.00864,
+        0.0036
+      ],
+      "color": "0x6b2b18"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0864,
+        "height": 0.012,
+        "depth": 0.0168
+      },
+      "position": [
+        -0.0696,
+        0.00624,
+        -0.0156
+      ],
+      "color": "0x6b2b18"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.024,
+        "depth": 0.0264
+      },
+      "position": [
+        -0.0648,
+        0.01224,
+        0.0036
+      ],
+      "color": "0x6b2b18"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0888,
+        "height": 0.00144,
+        "depth": 0.0312
+      },
+      "position": [
+        -0.0696,
+        0.01776,
+        0.0036
+      ],
+      "color": "0x42504a"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0888,
+        "height": 0.00144,
+        "depth": 0.0192
+      },
+      "position": [
+        -0.0696,
+        0.01296,
+        -0.0156
+      ],
+      "color": "0x42504a"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0816,
+        "height": 0.00216,
+        "depth": 0.0006
+      },
+      "position": [
+        -0.0696,
+        0.00444,
+        0.01836
+      ],
+      "color": "0xb0bec8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0816,
+        "height": 0.00216,
+        "depth": 0.0006
+      },
+      "position": [
+        -0.0696,
+        0.00744,
+        0.01836
+      ],
+      "color": "0xb0bec8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0816,
+        "height": 0.00216,
+        "depth": 0.0006
+      },
+      "position": [
+        -0.0696,
+        0.01044,
+        0.01836
+      ],
+      "color": "0xb0bec8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0816,
+        "height": 0.00216,
+        "depth": 0.0006
+      },
+      "position": [
+        -0.0696,
+        0.01344,
+        0.01836
+      ],
+      "color": "0xb0bec8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0816,
+        "height": 0.00216,
+        "depth": 0.0006
+      },
+      "position": [
+        -0.0696,
+        0.01644,
+        0.01836
+      ],
+      "color": "0xb0bec8"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0204,
+        "height": 0.00072,
+        "depth": 0.036
+      },
+      "position": [
+        -0.1044,
+        0.02064,
+        -0.0108
+      ],
+      "color": "0x68786a",
+      "rotation": {
+        "z": 0.45
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0216,
+        "height": 0.00072,
+        "depth": 0.036
+      },
+      "position": [
+        -0.09,
+        0.02904,
+        -0.0108
+      ],
+      "color": "0x68786a",
+      "rotation": {
+        "z": 0.28
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00072,
+        "depth": 0.036
+      },
+      "position": [
+        -0.066,
+        0.03264,
+        -0.0108
+      ],
+      "color": "0x68786a",
+      "rotation": {
+        "z": -0.05
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0204,
+        "height": 0.00072,
+        "depth": 0.036
+      },
+      "position": [
+        -0.0468,
+        0.02664,
+        -0.0108
+      ],
+      "color": "0x68786a",
+      "rotation": {
+        "z": -0.25
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.012,
+        "depth": 0.0168
+      },
+      "position": [
+        -0.0672,
+        0.00624,
+        -0.0228
+      ],
+      "color": "0x6b2b18"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0168,
+        "height": 0.0084,
+        "depth": 0.012
+      },
+      "position": [
+        -0.0816,
+        0.00444,
+        -0.018
+      ],
+      "color": "0x6b2b18"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0192,
+        "height": 0.0096,
+        "depth": 0.0144
+      },
+      "position": [
+        -0.0552,
+        0.00504,
+        -0.0276
+      ],
+      "color": "0x5c2214"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0144,
+        "height": 0.0168,
+        "depth": 0.0024
+      },
+      "position": [
+        -0.0696,
+        0.00864,
+        0.0192
+      ],
+      "color": "0x9e9c90"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0096,
+        "height": 0.00054,
+        "depth": 0.0144
+      },
+      "position": [
+        -0.0696,
+        0.01884,
+        0.0252
+      ],
+      "color": "0x8a6040"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00024,
+        "depth": 0.0096
+      },
+      "position": [
+        -0.0792,
+        0.00024,
+        0.0372
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00024,
+        "depth": 0.0096
+      },
+      "position": [
+        -0.0576,
+        0.00024,
+        0.0372
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00024,
+        "depth": 0.0096
+      },
+      "position": [
+        -0.0792,
+        0.00024,
+        0.0468
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.00024,
+        "depth": 0.0096
+      },
+      "position": [
+        -0.0576,
+        0.00024,
+        0.0468
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0024,
+        "height": 0.006,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.084,
+        0.00384,
+        0.0396
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0024,
+        "height": 0.006,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0624,
+        0.00384,
+        0.0444
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0024,
+        "height": 0.006,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.048,
+        0.00384,
+        0.036
+      ],
+      "color": "0x3a8030"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0672,
+        "height": 0.00042,
+        "depth": 0.00048
+      },
+      "position": [
+        -0.0438,
+        0.00021,
+        0.0744
+      ],
+      "color": "0xeeeecc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1056,
+        0.0048,
+        0.0276
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0816,
+        0.0048,
+        0.03
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0552,
+        0.0048,
+        0.03
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1056,
+        0.01035,
+        0.0276
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0816,
+        0.01035,
+        0.03
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0552,
+        0.01035,
+        0.03
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0696,
+        0.0048,
+        0.072
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0336,
+        0.0048,
+        0.072
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0015,
+        "height": 0.0096,
+        "radialSegments": 6
+      },
+      "position": [
+        0.0024,
+        0.0048,
+        0.072
+      ],
+      "color": "0xaaaaaa"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0696,
+        0.01035,
+        0.072
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.0336,
+        0.01035,
+        0.072
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radius": 0.0036,
+        "height": 0.0015,
+        "radialSegments": 6
+      },
+      "position": [
+        0.0024,
+        0.01035,
+        0.072
+      ],
+      "color": "0xffffcc"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.138,
+        "height": 0.0006,
+        "depth": 0.0504
+      },
+      "position": [
+        -0.0438,
+        0.00018,
+        0.0492
+      ],
+      "color": "0xc8c0b0"
+    }
+  ]
+}

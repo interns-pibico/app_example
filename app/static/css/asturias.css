@@ -1,0 +1,626 @@
+/* Asturias 3D Map - Light theme */
+
+/* Override style.css main constraints for Asturias page */
+main {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Canvas as fullscreen background */
+#three-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* Override style.css #three-canvas */
+    max-width: none;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    min-height: auto;
+}
+
+/* Navbar and footer float above canvas */
+header,
+.navbar {
+    position: relative;
+    z-index: 50;
+    background: #650E01;
+    border-bottom-color: #4a0900;
+}
+
+.navbar-brand a,
+.navbar-brand .version,
+.lang-switcher a {
+    color: rgba(255,255,255,0.9);
+}
+.lang-switcher a.active {
+    color: #ffffff;
+    background: rgba(255,255,255,0.2);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: #650E01;
+    border-top: 1px solid #4a0900;
+    color: rgba(255,255,255,0.75);
+}
+footer a { color: rgba(255,255,255,0.9); }
+
+#title-panel {
+    position: fixed;
+    top: 70px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #5a7a8a;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    pointer-events: none;
+}
+
+#title-panel .title {
+    color: #2a3a4a;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+#title-panel .subtitle {
+    font-size: 11px;
+}
+
+#info-card {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 320px;
+    max-height: 80vh;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 20px;
+    color: #2a3a4a;
+    backdrop-filter: blur(12px);
+    z-index: 200;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+#info-card h2 {
+    margin: 0 0 4px 0;
+    font-size: 20px;
+    color: #1a2a3a;
+    padding-right: 30px;
+}
+
+.card-subtitle {
+    font-size: 13px;
+    color: #5a7a8a;
+    margin: 0 0 14px 0;
+}
+
+.card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.stat {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a2a3a;
+}
+
+.stat-label {
+    display: block;
+    font-size: 10px;
+    color: #5a7a8a;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-comarca {
+    font-size: 13px;
+    color: #3a6a7a;
+    margin: 0 0 10px 0;
+}
+
+.card-fact {
+    font-size: 12px;
+    color: #4a5a6a;
+    line-height: 1.5;
+    margin: 0;
+    font-style: italic;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding-top: 10px;
+}
+
+#card-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: #5a7a8a;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+#card-close:hover {
+    color: #1a2a3a;
+}
+
+#hint {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #5a7a8a;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    pointer-events: none;
+}
+
+
+/* 3D text labels (CSS2DRenderer) */
+.label-3d {
+    font-size: 9px;
+    font-family: 'Inter', sans-serif;
+    color: #1a2a3a;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 1px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+/* ============================================
+   Modal genérico — Panel lateral derecho
+   Paleta: #8f1402, #4682b4, #515561, #204254, #985836, #ffffff, #000000
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal-content {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 420px;
+    max-width: 92vw;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -6px 0 30px rgba(0, 0, 0, 0.4);
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* Header */
+.modal-header {
+    background: #8f1402;
+    padding: 18px 20px 14px;
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    font-size: 1.3em;
+    padding-right: 30px;
+}
+
+#modal-municipio-tag {
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.close-button {
+    color: #ffffff;
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    line-height: 1;
+}
+
+.close-button:hover {
+    opacity: 0.7;
+    transform: rotate(90deg);
+}
+
+/* Filtros ocio */
+.ocio-filters {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f5f5f7;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.filter-btn {
+    background: #ffffff;
+    border: 2px solid #515561;
+    border-radius: 16px;
+    color: #515561;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: #515561;
+    color: #ffffff;
+}
+
+.filter-btn.active {
+    background: #4682b4;
+    border-color: #4682b4;
+    color: #ffffff;
+}
+
+/* Contenedor de items */
+.grid-container {
+    padding: 14px 16px;
+    overflow-y: auto;
+    flex: 1;
+    background: #ffffff;
+}
+
+/* Tarjetas */
+.item-card {
+    border-left: 4px solid #ccc;
+    background: #f9f9fa;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.item-card h3 {
+    color: #000000;
+    margin: 0 0 4px 0;
+    font-size: 1em;
+}
+
+.item-card p {
+    color: #515561;
+    margin: 3px 0;
+    font-size: 0.85em;
+}
+
+.item-card:hover {
+    transform: translateX(4px);
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Colores por categoría */
+.modal-restaurantes .item-card { border-left-color: #985836; }
+.modal-ocio        .item-card  { border-left-color: #4682b4; }
+.modal-tiendas     .item-card  { border-left-color: #204254; }
+.modal-mercado     .item-card  { border-left-color: #5c8a8a; background: rgba(255,255,255,0.75); }
+.modal-mercado     .item-card:hover { background: #fff; }
+
+/* Fondo azul del panel mercado */
+.modal-mercado .modal-content { background: #C4D8E8; }
+.modal-mercado .modal-footer  { background: #204254; border-top-color: #a0bbc8; }
+
+/* Footer */
+.modal-footer {
+    text-align: center;
+    padding: 14px 16px;
+    border-top: 1px solid #ddd;
+    background: #204254;
+    flex-shrink: 0;
+}
+
+.btn-ver-mas,
+.btn-trip {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 4px;
+    transition: 0.3s;
+    font-size: 0.88rem;
+}
+
+.btn-ver-mas {
+    background: #4682b4;
+    color: #ffffff;
+}
+
+.btn-ver-mas:hover {
+    background: #204254;
+    transform: scale(1.04);
+}
+
+.btn-trip {
+    background: #985836;
+    color: #ffffff;
+}
+
+.btn-trip:hover {
+    background: #7a4429;
+    transform: scale(1.04);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #three-canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    #title-panel {
+        top: 60px;
+        left: 8px;
+        padding: 8px 10px;
+    }
+
+    #title-panel .title {
+        font-size: 12px;
+    }
+
+    #title-panel .subtitle {
+        font-size: 10px;
+    }
+
+    #info-card {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-height: 50vh;
+        border-radius: 12px 12px 0 0;
+    }
+
+    #hint {
+        bottom: 50px;
+        font-size: 11px;
+    }
+
+    /* Panel lateral ocupa todo el ancho en móvil */
+    .modal-content {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+#btn-close-platform {
+    display: none;               /* oculto por defecto */
+    position: fixed;
+    left: 50%;
+    top: 80px;
+    transform: translateX(-50%);
+    z-index: 10000;              /* por encima del modal (9999) y todo lo demás */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(10, 10, 20, 0.82);
+    color: #fff;
+    font-size: 22px;
+    line-height: 1;
+    border: 2px solid rgba(255,255,255,0.45);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+    transition: background 0.15s, transform 0.15s;
+    backdrop-filter: blur(4px);
+}
+#btn-close-platform:hover {
+    background: rgba(180, 30, 30, 0.88);
+    transform: translateX(-50%) scale(1.08);
+}
+
+/* ============ Buscador de concejo ============ */
+.navbar-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    position: relative;
+}
+#search-municipio {
+    width: 220px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.12);
+    color: #ffffff;
+    font-size: 0.875rem;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+#search-municipio::placeholder { color: rgba(255,255,255,0.55); }
+#search-municipio:focus {
+    background: rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.6);
+}
+
+#search-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #650E01;
+    border: 1px solid #4a0900;
+    border-radius: 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 2000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+#search-dropdown.open { display: block; }
+.dd-item {
+    padding: 8px 14px;
+    color: rgba(255,255,255,0.9);
+    cursor: pointer;
+    font-size: 0.875rem;
+    border-radius: 8px;
+}
+.dd-item:hover { background: rgba(255,255,255,0.15); }
+.dd-item strong { color: #ffffff; }
+
+/* ─── Building card (waypoints) ─────────────────────────── */
+#building-card {
+  position: fixed; top: 50%; right: 10px;
+  transform: translateY(-50%);
+  background: #C4D8E8; color: #111;
+  font-family: 'Inter', sans-serif;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  width: 360px; max-width: 92vw;
+  max-height: 82vh; overflow-y: auto;
+  z-index: 210; display: none;
+  flex-direction: column;
+}
+#building-card-inner { padding: 20px 22px; }
+#bc-name { font-size: 18px; font-weight: 700; margin: 0 0 10px; color: #111; }
+#bc-desc { font-size: 13px; line-height: 1.5; color: #222; margin: 0 0 12px; }
+.bc-meta { width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 12px; }
+.bc-meta tr { border-bottom: 1px solid rgba(0,0,0,0.1); }
+.bc-label { color: #444; font-weight: 600; padding: 4px 8px 4px 0; white-space: nowrap; }
+.bc-meta td:last-child { color: #111; padding: 4px 0; }
+/* OSM map */
+.bc-map-container { margin-bottom: 14px; }
+#bc-osm-wrap {
+  position: relative; width: 320px; height: 200px;
+  overflow: hidden; border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+#bc-osm-tiles { position: absolute; inset: 0; }
+#bc-osm-pin {
+  position: absolute; font-size: 22px;
+  transform: translate(-50%, -100%);
+  pointer-events: none; z-index: 10;
+}
+.osm-zoom-btn {
+  position: absolute; right: 8px; width: 28px; height: 28px;
+  background: #fff; border: 1px solid #ccc; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer; z-index: 11;
+  user-select: none; color: #333;
+}
+.osm-zoom-btn:first-of-type { top: 8px; }
+.osm-zoom-out { top: 40px; }
+.osm-attribution {
+  position: absolute; bottom: 2px; right: 4px;
+  font-size: 10px; color: #555; z-index: 12;
+  background: rgba(255,255,255,0.7); padding: 1px 4px; border-radius: 3px;
+}
+.osm-attribution a { color: #333; }
+/* Place card (mismo estilo que building-card) */
+#place-card {
+  position: fixed; z-index: 10001; display: none;
+  flex-direction: column;
+  background: #C4D8E8; color: #111;
+  font-family: 'Inter', sans-serif;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  width: 360px; max-width: 92vw;
+  max-height: 82vh; overflow-y: auto;
+}
+#place-card-inner { padding: 20px 22px; }
+#pc-name { font-size: 18px; font-weight: 700; margin: 0 0 4px; color: #111; }
+#pc-tipo-label { font-size: 12px; font-weight: 600; color: #650E01; margin-bottom: 8px; }
+#pc-desc { font-size: 13px; line-height: 1.5; color: #222; margin: 0 0 12px; }
+#pc-osm-wrap {
+  position: relative; width: 316px; height: 200px;
+  overflow: hidden; border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+#pc-osm-tiles { position: absolute; inset: 0; }
+#pc-osm-pin {
+  position: absolute; font-size: 22px;
+  transform: translate(-50%, -100%);
+  pointer-events: none; z-index: 10;
+}
+#pc-cerrar {
+  width: 100%; padding: 10px; margin-top: 14px;
+  background: #650E01; color: #fff;
+  border: none; border-radius: 8px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+#pc-cerrar:hover { background: #8a1501; }
+/* Botón Ver lugar */
+.btn-ver-lugar {
+  background: #650E01; color: #fff;
+  border: none; border-radius: 6px;
+  padding: 4px 12px; cursor: pointer;
+  font-size: .8rem; font-family: 'Inter', sans-serif;
+  transition: background 0.2s; white-space: nowrap;
+}
+.btn-ver-lugar:hover { background: #8a1501; }
+/* Volver button */
+#bc-volver {
+  width: 100%; padding: 10px;
+  background: #650E01; color: #fff;
+  border: none; border-radius: 8px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+#bc-volver:hover { background: #8a1501; }

@@ -1,0 +1,11 @@
+{
+  "name": "Elogio España",
+  "type": "module_import",
+  "src": "/static/js/elogio.js",
+  "exportName": "createElogioEspanha",
+  "concejoPolygon": "c013",
+  "offsetX": -0.18,
+  "offsetZ": 0.1,
+  "heightOffset": 0.03,
+  "hasUpdate": true
+}

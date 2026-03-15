@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Asturias - Mapa 3D Interactivo{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', path='css/asturias.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/chef_hat.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='css/ocio.css') }}">
+{% endblock %}
+
+{% block navbar_center %}
+<div class="navbar-search">
+    <input type="text" id="search-municipio" placeholder="Buscar concejo..." autocomplete="off" spellcheck="false">
+    <div id="search-dropdown"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="three-canvas"></div>
+
+<div id="title-panel">
+    <div class="title">Principado de Asturias</div>
+    <div class="subtitle">Mapa 3D Interactivo &middot; 78 concejos</div>
+</div>
+
+<div id="info-card">
+    <button id="card-close" onclick="closeInfoCard()">&times;</button>
+    <h2 id="card-name"></h2>
+    <p id="card-capital" class="card-subtitle"></p>
+    <div class="card-stats">
+        <div class="stat"><span class="stat-value" id="card-pop">--</span><span class="stat-label">Poblaci&oacute;n</span></div>
+        <div class="stat"><span class="stat-value" id="card-alt">--</span><span class="stat-label">Altitud</span></div>
+        <div class="stat"><span class="stat-value" id="card-area">--</span><span class="stat-label">Superficie</span></div>
+        <div class="stat"><span class="stat-value" id="card-density">--</span><span class="stat-label">Densidad</span></div>
+    </div>
+    <p id="card-comarca" class="card-comarca"></p>
+    <p id="card-fact" class="card-fact"></p>
+</div>
+
+<div id="hint">Haz clic en una baliza roja o busca un concejo en la barra superior</div>
+
+<button id="btn-close-platform" aria-label="Cerrar municipio">✕</button>
+
+{% include "components/modal.html" %}
+
+<div id="place-card" style="display:none;position:fixed;z-index:10001;flex-direction:column;background:#C4D8E8;color:#111;font-family:'Inter',sans-serif;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,0.35);width:360px;max-width:92vw;max-height:82vh;overflow-y:auto;">
+  <div id="place-card-inner" style="padding:20px 22px;">
+    <h3 id="pc-name" style="font-size:18px;font-weight:700;margin:0 0 4px;color:#111;"></h3>
+    <div id="pc-tipo-label" style="font-size:12px;font-weight:600;color:#650E01;margin-bottom:8px;"></div>
+    <p id="pc-desc" style="font-size:13px;line-height:1.5;color:#222;margin:0 0 6px;"></p>
+    <div id="pc-dir" style="font-size:12px;color:#444;margin-bottom:4px;"></div>
+    <div id="pc-horario" style="font-size:12px;color:#666;margin-bottom:12px;"></div>
+    <div style="margin-bottom:14px;">
+      <div id="pc-osm-wrap" style="position:relative;width:316px;height:200px;overflow:hidden;border-radius:8px;border:1px solid rgba(0,0,0,0.2);">
+        <div id="pc-osm-tiles" style="position:absolute;inset:0;"></div>
+        <div id="pc-osm-pin" style="position:absolute;font-size:22px;transform:translate(-50%,-100%);pointer-events:none;z-index:10;">📍</div>
+        <div class="osm-zoom-btn" onclick="window._pcOsmZoom&&window._pcOsmZoom(1)">+</div>
+        <div class="osm-zoom-btn osm-zoom-out" onclick="window._pcOsmZoom&&window._pcOsmZoom(-1)">−</div>
+        <div class="osm-attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a></div>
+      </div>
+    </div>
+    <button id="pc-cerrar" onclick="window.closePlaceCard()" style="width:100%;padding:10px;background:#650E01;color:#fff;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Cerrar</button>
+  </div>
+</div>
+
+<div id="building-card">
+  <div id="building-card-inner">
+    <h3 id="bc-name"></h3>
+    <p id="bc-desc"></p>
+    <table class="bc-meta">
+      <tr id="bc-year-row"><td class="bc-label">Año de construcción</td><td id="bc-year"></td></tr>
+      <tr id="bc-artist-row"><td class="bc-label">Artista / Arquitecto</td><td id="bc-artist"></td></tr>
+    </table>
+    <div class="bc-map-container">
+      <div id="bc-osm-wrap">
+        <div id="bc-osm-tiles"></div>
+        <div id="bc-osm-pin">📍</div>
+        <div class="osm-zoom-btn" onclick="window._osmZoom&&window._osmZoom(1)">+</div>
+        <div class="osm-zoom-btn osm-zoom-out" onclick="window._osmZoom&&window._osmZoom(-1)">−</div>
+        <div class="osm-attribution">© <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a></div>
+      </div>
+    </div>
+    <button id="bc-volver" onclick="closeBuildingCard()">← Volver</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', path='js/asturias-scene.js') }}"></script>
+{% endblock %}

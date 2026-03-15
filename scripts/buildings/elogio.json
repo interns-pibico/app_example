@@ -1,0 +1,29 @@
+{
+  "name": "Elogio del Horizonte",
+  "enabled": false,
+  "type": "composite",
+  "parts": [
+    {
+      "geometry": "torus",
+      "params": {"radius": 0.018, "tube": 0.006, "radialSegments": 6, "tubularSegments": 12, "arc": "Math.PI*1.33"},
+      "position": [0, 0.038, 0],
+      "rotation": {"order": "ZXY", "x": "Math.PI/2", "z": "-Math.PI/6"}
+    },
+    {
+      "geometry": "box",
+      "params": {"width": 0.012, "height": 0.038, "depth": 0.020},
+      "position": [0.0156, 0.019, -0.009]
+    },
+    {
+      "geometry": "box",
+      "params": {"width": 0.012, "height": 0.038, "depth": 0.020},
+      "position": [-0.0156, 0.019, -0.009]
+    }
+  ],
+  "color": "0x8a8a88",
+  "concejoPolygon": "c013",
+  "offsetX": -0.10,
+  "offsetZ": 0.12,
+  "rotateY": "Math.PI",
+  "heightOffset": 0.0
+}

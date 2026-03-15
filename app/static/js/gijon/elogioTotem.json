@@ -1,0 +1,11 @@
+{
+  "name": "Elogio Totem",
+  "type": "glb",
+  "src": "/static/images/elogioTotem.glb",
+  "concejoPolygon": "c013",
+  "offsetX": -0.13,
+  "offsetZ": 0.14,
+  "rotation": { "x": -1.5708, "y": 3.14159 },
+  "normalizedScale": 0.1,
+  "heightOffset": 0.0
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Arbol pino 3",
+  "type": "composite",
+  "parts": [
+    {
+      "geometry": "cylinder",
+      "params": {"radiusTop": 0.004, "radiusBottom": 0.004, "height": 0.008, "radialSegments": 5},
+      "position": [0, 0.004, 0],
+      "color": "0x8b4513"
+    },
+    {
+      "geometry": "cone",
+      "params": {"radius": 0.006, "height": 0.018, "radialSegments": 6},
+      "position": [0, 0.017, 0],
+      "color": "0x2e8b57"
+    }
+  ],
+  "color": "0x2e8b57",
+  "concejoPolygon": "c013",
+  "offsetX": -0.15,
+  "offsetZ": 0.18,
+  "rotateY": "0",
+  "heightOffset": 0.0
+}

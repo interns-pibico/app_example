@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}App Asturias{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="/">App Asturias</a>
+                <span class="version">v{{ app_version }}</span>
+            </div>
+            {% block navbar_center %}{% endblock %}
+            <div class="navbar-end">
+                <div class="lang-switcher">
+                    <a href="?lang=en" class="{% if current_locale == 'en' %}active{% endif %}">EN</a>
+                    <a href="?lang=es" class="{% if current_locale == 'es' %}active{% endif %}">ES</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>{% trans %}footer_text{% endtrans %} &mdash; v{{ app_version }}</p>
+        <div id="osm-attribution">
+        Datos de © <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,2392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Previewer — Asturias Lab</title>
+
+<!-- Usa los mismos vendors que el proyecto -->
+<style>
+@font-face {
+  font-family: 'Inter';
+  src: url('/static/vendor/fonts/inter-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --bg:     #0a0a0f;
+  --panel:  #111118;
+  --panel2: #16161f;
+  --border: #2a2a3a;
+  --accent: #00f5a0;
+  --accent2:#7c3aed;
+  --accent3:#f59e0b;
+  --text:   #e2e8f0;
+  --muted:  #64748b;
+  --danger: #ef4444;
+  --code:   #0d0d15;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', monospace;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  height: 46px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  flex-shrink: 0;
+  gap: 12px;
+}
+.logo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo em { color: var(--accent); font-style: normal; }
+.logo-sep { color: var(--border); font-weight: 300; }
+.logo-sub { color: var(--muted); font-size: 11px; font-weight: 400; font-family: 'Inter', monospace; }
+
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 9px;
+  text-decoration: none;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.nav-back:hover { color: var(--accent); border-color: var(--accent); }
+
+.hst {
+  font-size: 9px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+.dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+#stTxt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* BG SWATCHES */
+.bgrow { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.bglbl { font-size:8px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+.swatches { display:flex; gap:3px; }
+.sw {
+  width: 17px; height: 17px;
+  border-radius: 3px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.sw:hover { transform: scale(1.3); }
+.sw.on { border-color: var(--accent) !important; box-shadow: 0 0 6px rgba(0,245,160,.5); }
+.sw-pick {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--muted);
+  background: var(--panel2);
+  border: 2px dashed var(--border);
+  cursor: pointer;
+}
+.sw-pick input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 9px; border-radius: 3px;
+  font-family: 'Inter', monospace; font-size: 10px;
+  cursor: pointer; border: 1px solid; transition: all .15s;
+  white-space: nowrap; background: transparent;
+}
+.bs { color:var(--text); border-color:var(--border); }
+.bs:hover { border-color:var(--accent); color:var(--accent); }
+.bp { background:var(--accent)!important; color:#000; border-color:var(--accent); font-weight:700; }
+.bp:hover { filter:brightness(1.1); }
+.bpu { background:var(--accent2)!important; color:#fff; border-color:var(--accent2); }
+.bpu:hover { filter:brightness(1.15); }
+.bam { color:var(--accent3); border-color:var(--accent3); }
+.bam:hover { background:rgba(245,158,11,.1); }
+.bf { width:100%; justify-content:center; }
+
+/* LAYOUT */
+.ws {
+  display: grid;
+  grid-template-columns: 270px 1fr 260px;
+  height: calc(100vh - 46px);
+  overflow: hidden;
+}
+
+/* LEFT PANEL */
+.lp {
+  border-right: 1px solid var(--border);
+  background: var(--panel);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sec { border-bottom:1px solid var(--border); padding:10px; flex-shrink:0; }
+.pt {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+
+.dz {
+  border: 2px dashed var(--border);
+  border-radius: 6px; padding: 14px 10px;
+  text-align: center; cursor: pointer;
+  transition: all .2s;
+}
+.dz:hover, .dz.over { border-color:var(--accent); background:rgba(0,245,160,.04); }
+.dz-icon { font-size:20px; display:block; margin-bottom:5px; }
+.dz-txt { font-size:10px; color:var(--muted); line-height:1.5; }
+.dz-txt strong { color:var(--accent); display:block; font-size:11px; }
+.badges { margin-top:5px; display:flex; gap:3px; justify-content:center; }
+.badge { font-size:8px; padding:1px 4px; border-radius:3px; border:1px solid; letter-spacing:1px; }
+.bglb { color:#60a5fa; border-color:rgba(96,165,250,.4); background:rgba(96,165,250,.08); }
+.bsvg { color:var(--accent); border-color:rgba(0,245,160,.4); background:rgba(0,245,160,.08); }
+#fi { display:none; }
+
+.cg { margin-bottom:8px; }
+.cl { font-size:9px; color:var(--muted); margin-bottom:3px; display:flex; justify-content:space-between; }
+.cl b { color:var(--accent); font-weight:400; }
+input[type=range] {
+  -webkit-appearance:none; width:100%; height:2px;
+  background:var(--border); border-radius:2px; outline:none; cursor:pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance:none; width:10px; height:10px;
+  background:var(--accent); border-radius:50%; cursor:pointer;
+}
+input[type=color] {
+  -webkit-appearance:none; width:100%; height:22px;
+  border:1px solid var(--border); border-radius:3px;
+  background:var(--panel2); cursor:pointer; padding:2px;
+}
+select {
+  width:100%; background:var(--panel2); border:1px solid var(--border);
+  color:var(--text); padding:4px 6px; border-radius:3px;
+  font-family:'Space Mono',monospace; font-size:10px; outline:none; cursor:pointer;
+}
+select:focus { border-color:var(--accent); }
+.r2 { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.trow { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.tlbl { font-size:10px; color:var(--muted); }
+.tog { position:relative; width:26px; height:14px; flex-shrink:0; }
+.tog input { opacity:0; width:0; height:0; }
+.tsl {
+  position:absolute; inset:0; background:var(--border);
+  border-radius:14px; cursor:pointer; transition:.2s;
+}
+.tsl::before {
+  content:''; position:absolute; width:8px; height:8px;
+  left:3px; top:3px; background:var(--muted); border-radius:50%; transition:.2s;
+}
+.tog input:checked + .tsl { background:rgba(0,245,160,.3); }
+.tog input:checked + .tsl::before { transform:translateX(12px); background:var(--accent); }
+
+.ol { flex:1; overflow-y:auto; padding:8px; }
+.oi {
+  display:flex; align-items:center; gap:5px;
+  padding:5px 7px; border-radius:4px; font-size:10px;
+  cursor:pointer; transition:background .15s;
+  border:1px solid transparent; margin-bottom:2px;
+}
+.oi:hover { background:var(--panel2); }
+.oi.sel { background:rgba(0,245,160,.08); border-color:rgba(0,245,160,.3); }
+.oic {
+  width:16px; height:16px; border-radius:2px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; flex-shrink:0;
+}
+.iglb { background:rgba(96,165,250,.15); }
+.isvg { background:rgba(0,245,160,.15); }
+.oname { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.odel { color:var(--muted); cursor:pointer; font-size:11px; padding:1px 3px; border-radius:2px; }
+.odel:hover { color:var(--danger); }
+.emp { text-align:center; padding:20px 10px; color:var(--muted); font-size:10px; line-height:2; }
+
+/* VIEWPORT */
+.vp { position:relative; overflow:hidden; background:#05050c; }
+#tc { position:absolute; inset:0; width:100%; height:100%; }
+.vpo { position:absolute; bottom:10px; left:10px; display:flex; gap:5px; z-index:5; }
+.vpi {
+  position:absolute; top:10px; left:10px;
+  font-size:9px; color:rgba(255,255,255,.2);
+  z-index:5; pointer-events:none; line-height:1.9;
+}
+.vdd {
+  position:absolute; inset:0; background:rgba(0,245,160,.04);
+  border:2px dashed var(--accent); display:flex;
+  align-items:center; justify-content:center;
+  z-index:20; pointer-events:none; opacity:0; transition:opacity .2s;
+}
+.vdd.on { opacity:1; }
+.vdd span {
+  font-family:'Syne',sans-serif; font-size:22px;
+  font-weight:800; color:var(--accent); opacity:.7;
+}
+.lov {
+  position:absolute; inset:0; background:rgba(10,10,15,.85);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; z-index:50; opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.lov.on { opacity:1; pointer-events:all; }
+.lspin {
+  width:28px; height:28px; border:2px solid var(--border);
+  border-top-color:var(--accent); border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+.lmsg { font-size:10px; color:var(--muted); }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* RIGHT PANEL */
+.rp { border-left:1px solid var(--border); background:var(--panel); display:flex; flex-direction:column; overflow:hidden; }
+.cp { flex:1; display:flex; flex-direction:column; overflow:hidden; min-height:0; }
+.ch {
+  padding:8px 10px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between; flex-shrink:0;
+}
+.ctabs { display:flex; gap:2px; }
+.ctab { padding:2px 7px; border-radius:3px; font-size:9px; cursor:pointer; color:var(--muted); transition:all .15s; }
+.ctab.on { background:rgba(0,245,160,.1); color:var(--accent); }
+
+pre.cd {
+  flex:1; overflow:auto; padding:10px;
+  font-size:9.5px; line-height:1.7; background:var(--code);
+  white-space:pre-wrap; word-break:break-all;
+  color:#a5f3c8; font-family:'Space Mono',monospace; min-height:0;
+}
+pre.cd .kw { color:#c084fc; }
+pre.cd .fn { color:#60a5fa; }
+pre.cd .nm { color:var(--accent3); }
+pre.cd .st { color:#86efac; }
+pre.cd .cm { color:var(--muted); font-style:italic; }
+
+.cph {
+  flex:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:8px; color:var(--muted);
+  font-size:10px; text-align:center; padding:20px;
+}
+.cph-i { font-size:28px; opacity:.2; }
+
+/* TRANSFORM */
+.tgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
+.tw { display:flex; flex-direction:column; gap:2px; }
+.tax { font-size:8px; color:var(--muted); text-align:center; letter-spacing:1px; }
+.tin {
+  background:var(--panel2); border:1px solid var(--border);
+  color:var(--text); padding:3px; border-radius:3px;
+  font-family:'Space Mono',monospace; font-size:9px;
+  text-align:center; width:100%; outline:none;
+}
+.tin:focus { border-color:var(--accent); }
+
+/* TOASTS */
+#toasts {
+  position:fixed; bottom:12px; right:12px; z-index:999;
+  display:flex; flex-direction:column; gap:5px; pointer-events:none;
+}
+.toast {
+  background:var(--panel2); border:1px solid var(--border);
+  border-radius:4px; padding:7px 12px; font-size:11px;
+  display:flex; align-items:center; gap:6px;
+  animation:sli .2s ease; box-shadow:0 6px 20px rgba(0,0,0,.5);
+}
+.toast.ok  { border-color:rgba(0,245,160,.5); }
+.toast.err { border-color:rgba(239,68,68,.5); color:#fca5a5; }
+@keyframes sli { from{transform:translateX(12px);opacity:0} to{transform:translateX(0);opacity:1} }
+
+::-webkit-scrollbar { width:3px; height:3px; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+/* ── TOOLBAR ── */
+.tb { display:flex; flex-wrap:wrap; gap:4px; padding:8px 10px; border-bottom:1px solid var(--border); flex-shrink:0; }
+.tbtn {
+  flex:1 1 calc(25% - 4px); min-width:55px; display:flex; flex-direction:column; align-items:center; gap:2px;
+  padding:5px 3px; border-radius:4px; border:1px solid var(--border);
+  background:transparent; color:var(--muted); cursor:pointer;
+  font-family:'Inter',monospace; font-size:9px; letter-spacing:.5px;
+  transition:all .15s;
+}
+.tbtn:hover { color:var(--text); border-color:var(--text); }
+.tbtn.on { background:rgba(0,245,160,.12); border-color:var(--accent); color:var(--accent); }
+.tbtn-icon { font-size:15px; }
+.tpa { flex:1; overflow:hidden; display:flex; flex-direction:column; min-height:0; }
+.tpn { display:none; flex:1; overflow:hidden; flex-direction:column; min-height:0; }
+.tpn.on { display:flex; }
+
+/* Inspector tree */
+.mtree { flex:1; overflow-y:auto; padding:6px; }
+.mti {
+  display:flex; align-items:center; gap:4px;
+  padding:3px 5px; border-radius:3px; cursor:pointer;
+  font-size:9px; transition:background .12s;
+}
+.mti:hover { background:var(--panel2); }
+.mti.sel { background:rgba(0,245,160,.08); border:1px solid rgba(0,245,160,.2); }
+.mti-eye { font-size:11px; cursor:pointer; flex-shrink:0; }
+.mti-eye:hover { opacity:.7; }
+.mti-lbl { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.mti-type { font-size:7px; color:var(--muted); flex-shrink:0; padding:1px 3px; background:var(--panel2); border-radius:2px; }
+
+/* Primitives grid */
+.pgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; padding:10px; }
+.pbtn {
+  aspect-ratio:1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:3px; border-radius:5px;
+  border:1px solid var(--border); background:var(--panel2);
+  color:var(--muted); cursor:pointer; font-family:'Inter',monospace;
+  font-size:8px; transition:all .15s;
+}
+.pbtn:hover { border-color:var(--accent); color:var(--accent); background:rgba(0,245,160,.05); }
+.pbtn-icon { font-size:18px; }
+
+/* Path list */
+.plist { flex:1; overflow-y:auto; padding:6px; }
+.pli {
+  display:flex; align-items:center; gap:4px;
+  padding:3px 5px; border-radius:3px; margin-bottom:2px;
+  border:1px solid var(--border); background:var(--panel2);
+}
+.pli-eye { font-size:11px; cursor:pointer; flex-shrink:0; }
+.pli-eye:hover { opacity:.7; }
+.pli-lbl { flex:1; font-size:8px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--muted); }
+.pli-col { width:22px; height:16px; border:1px solid var(--border); border-radius:2px; cursor:pointer; padding:1px; flex-shrink:0; background:var(--panel2); }
+.pli-dep { width:42px; background:var(--code); border:1px solid var(--border); color:var(--text); border-radius:2px; font-size:8px; font-family:'Space Mono',monospace; text-align:center; padding:1px 2px; flex-shrink:0; outline:none; }
+.pli-dep:focus { border-color:var(--accent); }
+
+/* Build tool */
+.vbtn-row { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.vbtn-row .btn { justify-content:center; font-size:9px; padding:5px 4px; }
+.bld-inputs { display:grid; grid-template-columns:repeat(4,1fr); gap:5px; }
+.bld-dim .cl { margin-bottom:2px; }
+.bld-dim input[type=number] { width:100%; }
+
+/* Material panel extras */
+.mrow { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.mhex {
+  flex:1; background:var(--panel2); border:1px solid var(--border);
+  color:var(--text); padding:2px 4px; border-radius:3px;
+  font-family:'Space Mono',monospace; font-size:9px; outline:none;
+}
+.mhex:focus { border-color:var(--accent); }
+
+/* Inspector action bar */
+.insp-bar { display:flex; gap:4px; padding:6px 8px; border-top:1px solid var(--border); flex-shrink:0; flex-wrap:wrap; }
+.insp-bar .btn { font-size:8px; padding:3px 7px; }
+
+/* Delete en árbol Inspector */
+.mti-del { font-size:10px; color:var(--muted); cursor:pointer; flex-shrink:0; padding:0 2px; border-radius:2px; display:inline; opacity:0.25; }
+.mti:hover .mti-del { opacity:1; }
+.mti-del:hover { color:#ff4444; }
+
+/* Delete en lista Paths */
+.pli-del { font-size:10px; color:var(--muted); cursor:pointer; flex-shrink:0; padding:0 2px; display:none; }
+.pli:hover .pli-del { display:inline; }
+.pli-del:hover { color:#ff4444; }
+
+/* TransformControls mode bar */
+#tcBar { display:none; padding:5px 8px; border-bottom:1px solid var(--border); flex-shrink:0; display:none; gap:3px; flex-wrap:wrap; }
+#tcBar.on { display:flex; }
+#tcBar button { flex:1; padding:3px 4px; font-size:9px; border:1px solid var(--border); border-radius:3px;
+  background:transparent; color:var(--muted); cursor:pointer; font-family:'Inter',monospace; transition:all .15s; }
+#tcBar button:hover { color:var(--text); border-color:var(--text); }
+#tcBar button.on { background:rgba(0,245,160,.12); border-color:var(--accent); color:var(--accent); }
+
+/* XF panel — transform inputs in Inspector */
+#xfPanel { display:none; padding:6px 10px; border-top:1px solid var(--border); flex-shrink:0; }
+#xfPanel.on { display:block; }
+.xfRow { display:flex; align-items:center; gap:4px; margin-bottom:4px; }
+.xfRow span { font-size:8px; color:var(--muted); width:28px; flex-shrink:0; }
+.xfRow input { flex:1; background:var(--panel2); border:1px solid var(--border); color:var(--text);
+  padding:2px 3px; border-radius:3px; font-family:'Space Mono',monospace; font-size:9px;
+  text-align:center; outline:none; min-width:0; }
+.xfRow input:focus { border-color:var(--accent); }
+
+/* Code tab panel */
+#tpCode { overflow-y:auto; }
+#codeInput { flex:1; resize:none; background:var(--code); border:1px solid var(--border);
+  color:#a5f3c8; font-family:'Space Mono',monospace; font-size:9px; line-height:1.5;
+  padding:6px 10px; outline:none; margin:0 10px; border-radius:3px; min-height:140px; }
+#codeInput:focus { border-color:var(--accent); }
+#codeErr { color:#f87171; font-size:9px; padding:4px 10px; white-space:pre-wrap; display:none; }
+
+/* Paths action bar */
+.path-bar { display:flex; gap:4px; padding:6px 8px; border-top:1px solid var(--border); flex-shrink:0; }
+.path-bar .btn { font-size:8px; padding:3px 7px; }
+#fiMergeGlb, #fiMergeSvg { display:none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <a href="/" class="nav-back">← Volver</a>
+    <span class="logo-sep">|</span>
+    3D<em>LAB</em>
+    <span class="logo-sub">/ Previewer</span>
+  </div>
+
+  <div class="hst">
+    <div class="dot"></div>
+    <span id="stTxt">Iniciando Three.js...</span>
+  </div>
+
+  <!-- SELECTOR DE FONDO -->
+  <div class="bgrow">
+    <span class="bglbl">Fondo</span>
+    <div class="swatches" id="swatches">
+      <div class="sw on"  data-hex="#05050c" style="background:#05050c"              title="Negro"></div>
+      <div class="sw"     data-hex="#1a1a2e" style="background:#1a1a2e"              title="Azul noche"></div>
+      <div class="sw"     data-hex="#2d2d2d" style="background:#2d2d2d"              title="Gris oscuro"></div>
+      <div class="sw"     data-hex="#557a8a" style="background:#557a8a"              title="Slate"></div>
+      <div class="sw"     data-hex="#a7d1f1" style="background:#a7d1f1"              title="Azul cielo (Asturias)"></div>
+      <div class="sw"     data-hex="#d0d0d0" style="background:#d0d0d0"              title="Gris claro"></div>
+      <div class="sw"     data-hex="#f0ede8" style="background:#f0ede8;border:1px solid #ccc" title="Hueso"></div>
+      <div class="sw"     data-hex="#ffffff" style="background:#fff;border:1px solid #ccc"    title="Blanco"></div>
+      <div class="sw sw-pick" title="Color personalizado">
+        +<input type="color" id="bgPick" value="#05050c">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn bs" id="btnClear">⊘ Limpiar</button>
+</header>
+
+<div class="ws">
+  <!-- ── LEFT PANEL ── -->
+  <div class="lp">
+    <div class="sec">
+      <div class="pt">Importar archivo</div>
+      <div class="dz" id="dz" onclick="document.getElementById('fi').click()">
+        <span class="dz-icon">⬆</span>
+        <div class="dz-txt">
+          <strong>Suelta aquí o haz clic</strong>
+          GLB / GLTF / SVG
+        </div>
+        <div class="badges">
+          <span class="badge bglb">GLB</span>
+          <span class="badge bsvg">SVG</span>
+        </div>
+      </div>
+      <input type="file" id="fi" accept=".glb,.gltf,.svg">
+      <div class="cg" style="margin-top:8px">
+        <div class="cl">URL de GLB</div>
+        <div style="display:flex;gap:4px">
+          <input class="tin" type="text" id="urlGlb" placeholder="https://..." style="flex:1">
+          <button class="btn bs" id="btnLoadUrl">↓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="tb">
+      <button class="tbtn on" id="tbSelect"     onclick="setTool('select')">    <span class="tbtn-icon">⬚</span>Sel</button>
+      <button class="tbtn"    id="tbInspector"  onclick="setTool('inspector')"> <span class="tbtn-icon">🔍</span>Insp</button>
+      <button class="tbtn"    id="tbMaterial"   onclick="setTool('material')">  <span class="tbtn-icon">🎨</span>Mat</button>
+      <button class="tbtn"    id="tbPrimitives" onclick="setTool('primitives')"><span class="tbtn-icon">⬛</span>Prim</button>
+      <button class="tbtn"    id="tbPaths"      onclick="setTool('paths')">     <span class="tbtn-icon">⬡</span>Path</button>
+      <button class="tbtn"    id="tbImage"      onclick="setTool('image')">    <span class="tbtn-icon">🖼</span>Img→SVG</button>
+      <button class="tbtn"    id="tbBuild"      onclick="setTool('build')">    <span class="tbtn-icon">🏗</span>Build</button>
+      <button class="tbtn"    id="tbCode"       onclick="setTool('code')">     <span class="tbtn-icon">⟨/⟩</span>Código</button>
+    </div>
+
+    <!-- TOOL PANELS -->
+    <div class="tpa">
+
+      <!-- SELECT: lista de objetos en escena -->
+      <div class="tpn on" id="tpSelect">
+        <div style="padding:8px 10px 3px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0">Objetos en escena</div>
+        <div class="ol" id="ol">
+          <div class="emp">Sin objetos<br>Carga un GLB o SVG</div>
+        </div>
+      </div>
+
+      <!-- INSPECTOR: árbol jerárquico de meshes -->
+      <div class="tpn" id="tpInspector">
+        <div style="padding:8px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border)">Inspector de meshes</div>
+        <!-- TransformControls mode bar -->
+        <div id="tcBar">
+          <button id="tcT" onclick="setTcMode('translate')" title="Mover">⟷ Mover</button>
+          <button id="tcR" onclick="setTcMode('rotate')"    title="Rotar">↻ Rotar</button>
+          <button id="tcS" onclick="setTcMode('scale')"     title="Escalar">⤢ Escalar</button>
+          <button id="tcX" onclick="setTcMode(null)"        title="Desactivar">✕ Off</button>
+        </div>
+        <div class="mtree" id="mtree">
+          <div class="emp">Selecciona un objeto<br>para inspeccionar</div>
+        </div>
+        <!-- Numeric transform inputs -->
+        <div id="xfPanel">
+          <div class="xfRow"><span>Pos</span>
+            <input id="xPx" type="number" step="0.01" oninput="applyXfPanel()">
+            <input id="xPy" type="number" step="0.01" oninput="applyXfPanel()">
+            <input id="xPz" type="number" step="0.01" oninput="applyXfPanel()">
+          </div>
+          <div class="xfRow"><span>Rot°</span>
+            <input id="xRx" type="number" step="1" oninput="applyXfPanel()">
+            <input id="xRy" type="number" step="1" oninput="applyXfPanel()">
+            <input id="xRz" type="number" step="1" oninput="applyXfPanel()">
+          </div>
+          <div class="xfRow"><span>Esc</span>
+            <input id="xSx" type="number" step="0.01" min="0.001" oninput="applyXfPanel()">
+            <input id="xSy" type="number" step="0.01" min="0.001" oninput="applyXfPanel()">
+            <input id="xSz" type="number" step="0.01" min="0.001" oninput="applyXfPanel()">
+          </div>
+        </div>
+        <div class="insp-bar" id="inspBar" style="display:none">
+          <button class="btn bs" onclick="addPrimToGLB('box')"      title="Añadir caja">＋⬛</button>
+          <button class="btn bs" onclick="addPrimToGLB('sphere')"   title="Añadir esfera">＋⚪</button>
+          <button class="btn bs" onclick="addPrimToGLB('cylinder')" title="Añadir cilindro">＋🔵</button>
+          <button class="btn bam" onclick="$('fiMergeGlb').click()" title="Fusionar GLB">＋ GLB</button>
+        </div>
+        <input type="file" id="fiMergeGlb" accept=".glb,.gltf">
+      </div>
+
+      <!-- MATERIAL: controles de material por mesh + SVG global -->
+      <div class="tpn" id="tpMaterial" style="overflow-y:auto">
+        <!-- Panel de material por mesh (GLB / primitiva) -->
+        <div class="sec" id="meshMatCtrl" style="display:none">
+          <div class="pt">Material del mesh</div>
+          <div class="cg">
+            <div class="cl">Tipo</div>
+            <select id="mType" onchange="onMatTypeChange()">
+              <option value="lambert">Lambert (flat)</option>
+              <option value="phong">Phong (smooth)</option>
+              <option value="standard">Standard (PBR)</option>
+              <option value="basic">Basic</option>
+              <option value="wire">Wireframe</option>
+            </select>
+          </div>
+          <div class="cg">
+            <div class="cl">Color</div>
+            <div class="mrow">
+              <input type="color" id="mCol" value="#ffffff" style="flex:0 0 36px;height:22px;width:36px"
+                oninput="$('mHex').value=this.value">
+              <input class="mhex" type="text" id="mHex" value="#ffffff" maxlength="7"
+                oninput="if(/^#[0-9a-fA-F]{6}$/.test(this.value))$('mCol').value=this.value">
+            </div>
+          </div>
+          <div class="cg">
+            <div class="cl">Opacidad <b id="mOpTxt">1.00</b></div>
+            <input type="range" id="mOp" min="0" max="1" step="0.01" value="1"
+              oninput="$('mOpTxt').textContent=parseFloat(this.value).toFixed(2)">
+          </div>
+          <div id="mPbr" style="display:none">
+            <div class="cg">
+              <div class="cl">Roughness <b id="mRoTxt">0.50</b></div>
+              <input type="range" id="mRo" min="0" max="1" step="0.01" value="0.5"
+                oninput="$('mRoTxt').textContent=parseFloat(this.value).toFixed(2)">
+            </div>
+            <div class="cg">
+              <div class="cl">Metalness <b id="mMeTxt">0.10</b></div>
+              <input type="range" id="mMe" min="0" max="1" step="0.01" value="0.1"
+                oninput="$('mMeTxt').textContent=parseFloat(this.value).toFixed(2)">
+            </div>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:6px">
+            <button class="btn bs" style="flex:1;font-size:8px" id="btnApplyMat">Aplicar</button>
+            <button class="btn bs" style="flex:1;font-size:8px" id="btnApplyMatAll">A todos</button>
+          </div>
+          <div style="font-size:7px;color:var(--muted);margin-top:5px;line-height:1.6">
+            Aplicar → mesh / obj seleccionado<br>A todos → toda la escena
+          </div>
+          <!-- Extrude Z control (non-SVG meshes) -->
+          <div id="extrudeCtrl" style="display:none;margin-top:8px;padding-top:6px;border-top:1px solid var(--border)">
+            <div class="cl">Profundidad Z <b id="extTxt">1.00</b></div>
+            <input type="range" id="extZ" min="0.01" max="10" step="0.01" value="1"
+              oninput="$('extTxt').textContent=parseFloat(this.value).toFixed(2); applyExtrudeZ(parseFloat(this.value))">
+          </div>
+        </div>
+
+        <!-- SVG controles globales (migrado) -->
+        <div class="sec" id="svgCtrl" style="display:none">
+          <div class="pt">SVG → 3D (global)</div>
+          <div class="cg">
+            <div class="cl">Profundidad <b id="dvTxt">0.10</b></div>
+            <input type="range" id="ed" min="0.01" max="2" step="0.01" value="0.1"
+              oninput="dvTxt.textContent=parseFloat(this.value).toFixed(2);rebuildSVG()">
+          </div>
+          <div class="cg">
+            <div class="cl">Escala <b id="svTxt">1.0</b></div>
+            <input type="range" id="es" min="0.1" max="5" step="0.05" value="1"
+              oninput="svTxt.textContent=parseFloat(this.value).toFixed(1);rebuildSVG()">
+          </div>
+          <div class="cg">
+            <div class="cl">Material</div>
+            <select id="mt" onchange="rebuildSVG()">
+              <option value="lambert">Lambert (flat)</option>
+              <option value="phong">Phong (smooth)</option>
+              <option value="standard">Standard (PBR)</option>
+              <option value="wire">Wireframe</option>
+            </select>
+          </div>
+          <div class="r2">
+            <div class="cg">
+              <div class="cl">Color</div>
+              <input type="color" id="oc" value="#00f5a0" onchange="rebuildSVG()">
+            </div>
+            <div class="cg">
+              <div class="cl">Color SVG</div>
+              <div class="trow" style="margin:0">
+                <label class="tog"><input type="checkbox" id="usc" onchange="rebuildSVG()"><span class="tsl"></span></label>
+              </div>
+            </div>
+          </div>
+          <div class="trow">
+            <span class="tlbl">Doble cara</span>
+            <label class="tog"><input type="checkbox" id="ds" checked onchange="rebuildSVG()"><span class="tsl"></span></label>
+          </div>
+          <div class="trow">
+            <span class="tlbl">Flat shading</span>
+            <label class="tog"><input type="checkbox" id="fs" checked onchange="rebuildSVG()"><span class="tsl"></span></label>
+          </div>
+        </div>
+
+        <!-- Placeholder cuando no hay nada seleccionado / cargado -->
+        <div id="matNoSel" class="emp">
+          <br>Selecciona un mesh<br>en el Inspector,<br>o carga un SVG
+        </div>
+      </div>
+
+      <!-- PRIMITIVAS: añadir geometrías básicas -->
+      <div class="tpn" id="tpPrimitives">
+        <div style="padding:8px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border)">Añadir primitiva</div>
+        <div class="pgrid">
+          <button class="pbtn" onclick="addPrimitive('box')">      <span class="pbtn-icon">⬛</span>Caja</button>
+          <button class="pbtn" onclick="addPrimitive('sphere')">   <span class="pbtn-icon">⚪</span>Esfera</button>
+          <button class="pbtn" onclick="addPrimitive('cylinder')"> <span class="pbtn-icon">🔵</span>Cilindro</button>
+          <button class="pbtn" onclick="addPrimitive('plane')">    <span class="pbtn-icon">▭</span>Plano</button>
+          <button class="pbtn" onclick="addPrimitive('torus')">    <span class="pbtn-icon">⭕</span>Toro</button>
+          <button class="pbtn" onclick="addPrimitive('cone')">     <span class="pbtn-icon">△</span>Cono</button>
+        </div>
+        <div style="padding:0 10px 10px">
+          <div class="cg">
+            <div class="cl">Tamaño</div>
+            <input class="tin" type="number" id="primSz" value="1" min="0.1" step="0.1" style="width:100%">
+          </div>
+          <div class="cg">
+            <div class="cl">Segmentos</div>
+            <input class="tin" type="number" id="primSeg" value="16" min="3" max="64" step="1" style="width:100%">
+          </div>
+          <div class="cg">
+            <div class="cl">Color</div>
+            <input type="color" id="primCol" value="#00f5a0" style="width:100%;height:22px">
+          </div>
+        </div>
+      </div>
+
+      <!-- PATHS: control individual de paths SVG -->
+      <div class="tpn" id="tpPaths">
+        <div style="padding:6px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <span>Paths SVG</span>
+          <button class="btn bs" style="padding:1px 5px;font-size:7px" id="btnPathReset">↺ Reset</button>
+        </div>
+        <div id="pathNoSvg" class="emp">Carga un SVG para<br>controlar sus paths</div>
+        <div class="plist" id="plist" style="display:none"></div>
+        <div class="path-bar" id="pathBar" style="display:none">
+          <button class="btn bam" onclick="$('fiMergeSvg').click()">＋ SVG</button>
+        </div>
+        <input type="file" id="fiMergeSvg" accept=".svg">
+      </div>
+
+      <!-- IMAGE → SVG: convertir imagen bitmap a SVG vectorial -->
+      <div class="tpn" id="tpImage">
+        <div style="padding:8px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border)">Imagen → SVG</div>
+        <canvas id="imgPrev" style="width:auto;height:auto;max-width:100%;max-height:110px;background:#111;display:none;margin:4px auto"></canvas>
+        <div id="imgInfo" style="font-size:8px;color:var(--muted);text-align:center;padding:2px 10px;display:none"></div>
+        <div class="dz" id="dzImg" style="margin:8px" onclick="document.getElementById('fiImg').click()">
+          <span class="dz-icon">🖼</span>
+          <div class="dz-txt"><strong>PNG / JPG / WebP</strong>Imagen a vectorizar</div>
+        </div>
+        <input type="file" id="fiImg" accept="image/*" style="display:none">
+        <div style="padding:0 10px">
+          <div class="cg">
+            <div class="cl">Colores <b id="imgColTxt">8</b></div>
+            <input type="range" id="imgCols" min="2" max="32" value="8"
+              oninput="$('imgColTxt').textContent=this.value">
+          </div>
+          <div class="cg">
+            <div class="cl">Blur <b id="imgBlurTxt">0</b></div>
+            <input type="range" id="imgBlur" min="0" max="5" value="0"
+              oninput="$('imgBlurTxt').textContent=this.value">
+          </div>
+          <div class="trow">
+            <span class="tlbl">Escala de grises</span>
+            <label class="tog"><input type="checkbox" id="imgGray"><span class="tsl"></span></label>
+          </div>
+          <button class="btn bp bf" id="btnImgConvert" style="margin-top:6px" disabled>↻ Convertir a SVG</button>
+          <button class="btn bs bf" id="btnImgDownSvg" style="margin-top:4px;display:none">↓ Guardar SVG</button>
+        </div>
+      </div>
+
+      <!-- CÓDIGO: pegar / cargar código Three.js para ejecutar en escena -->
+      <div class="tpn" id="tpCode">
+        <div style="padding:8px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border)">Código Three.js</div>
+        <div class="dz" id="dzCode" style="margin:8px" onclick="$('fiCode').click()">
+          <span class="dz-icon">📄</span>
+          <div class="dz-txt"><strong>Cargar .js / .html</strong>Arrastra o haz clic</div>
+        </div>
+        <input type="file" id="fiCode" accept=".js,.html" style="display:none">
+        <div style="padding:2px 10px;font-size:8px;color:var(--muted);text-align:center">— o pega código —</div>
+        <textarea id="codeInput" placeholder="// Variables disponibles: scene, THREE&#10;const geo = new THREE.BoxGeometry(1,1,1);&#10;const mat = new THREE.MeshStandardMaterial({color:0x00f5a0});&#10;scene.add(new THREE.Mesh(geo, mat));"></textarea>
+        <button class="btn bp" onclick="evalSceneCode()" style="margin:6px 10px;width:calc(100% - 20px)">▶ Ejecutar en escena</button>
+        <button class="btn bs" id="btnDlHtml" onclick="downloadUpdatedHtml()" style="margin:0 10px 6px;width:calc(100% - 20px);display:none">⬇ Descargar HTML actualizado</button>
+        <div id="codeErr"></div>
+      </div>
+
+      <!-- BUILD: reconstrucción 3D con imagen de referencia -->
+      <div class="tpn" id="tpBuild" style="overflow-y:auto">
+        <!-- Referencia visual -->
+        <div style="padding:8px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;border-bottom:1px solid var(--border)">Referencia visual</div>
+        <div style="padding:8px 10px">
+          <div class="dz" id="dzRef" onclick="document.getElementById('fiRefImg').click()">
+            <span class="dz-icon">📷</span>
+            <div class="dz-txt"><strong>JPG / PNG / WebP</strong>Imagen de referencia</div>
+          </div>
+          <input type="file" id="fiRefImg" accept="image/*" style="display:none">
+          <div class="cg" style="margin-top:8px">
+            <div class="cl">Opacidad <b id="refOpTxt">50</b>%</div>
+            <input type="range" id="rngRefOpacity" min="0" max="100" value="50"
+              oninput="$('refOpTxt').textContent=this.value; setRefOpacity(this.value)">
+          </div>
+          <button class="btn bs bf" id="btnRefToggle" style="margin-top:2px" disabled>👁 Mostrar/Ocultar</button>
+        </div>
+
+        <!-- Vista cámara -->
+        <div style="padding:6px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border);border-top:1px solid var(--border)">Vista cámara</div>
+        <div style="padding:8px 10px">
+          <div class="vbtn-row">
+            <button class="btn bs" onclick="setBuildView('front')">⬛ Frente</button>
+            <button class="btn bs" onclick="setBuildView('side')">◧ Lateral</button>
+            <button class="btn bs" onclick="setBuildView('top')">⊡ Top</button>
+            <button class="btn bs" onclick="setBuildView('iso')">◈ ISO</button>
+          </div>
+        </div>
+
+        <!-- Añadir elemento -->
+        <div style="padding:6px 10px;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--border);border-top:1px solid var(--border)">Añadir elemento</div>
+        <div style="padding:8px 10px">
+          <div class="bld-inputs">
+            <div class="bld-dim">
+              <div class="cl">W</div>
+              <input class="tin" type="number" id="bldW" value="2" min="0.1" step="0.1">
+            </div>
+            <div class="bld-dim">
+              <div class="cl">H</div>
+              <input class="tin" type="number" id="bldH" value="3" min="0.1" step="0.1">
+            </div>
+            <div class="bld-dim">
+              <div class="cl">D</div>
+              <input class="tin" type="number" id="bldD" value="1" min="0.1" step="0.1">
+            </div>
+            <div class="bld-dim">
+              <div class="cl">Color</div>
+              <input type="color" id="bldCol" value="#a0a8b0" style="width:100%;height:22px">
+            </div>
+          </div>
+          <div class="pgrid" style="margin-top:8px">
+            <button class="pbtn" onclick="addBuildingElem('wall')">  <span class="pbtn-icon">🧱</span>Muro</button>
+            <button class="pbtn" onclick="addBuildingElem('floor')"> <span class="pbtn-icon">▬</span>Piso</button>
+            <button class="pbtn" onclick="addBuildingElem('roof_flat')"><span class="pbtn-icon">🟦</span>Techo</button>
+            <button class="pbtn" onclick="addBuildingElem('roof_gabled')"><span class="pbtn-icon">🔺</span>Tejado ∧</button>
+            <button class="pbtn" onclick="addBuildingElem('roof_hipped')"><span class="pbtn-icon">◆</span>Tejado ◆</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── VIEWPORT ── -->
+  <div class="vp" id="vp">
+    <img id="refImg" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:0;">
+    <canvas id="tc" style="position:relative;z-index:1;background:transparent;"></canvas>
+    <div class="vdd" id="vdd"><span>SOLTAR ARCHIVO</span></div>
+    <div class="vpi">Orbit: drag · Zoom: scroll · Pan: right-drag</div>
+    <div class="vpo">
+      <button class="btn bs" id="btnReset">⊙ Reset</button>
+      <button class="btn bs" id="btnGrid">⊞ Grid</button>
+      <button class="btn bs" id="btnWire">◈ Wire</button>
+    </div>
+    <div class="lov" id="lov">
+      <div class="lspin"></div>
+      <div class="lmsg" id="lmsg">Procesando...</div>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ── -->
+  <div class="rp">
+    <div class="sec">
+      <div class="pt">Exportar</div>
+      <div class="cg" style="margin-bottom:6px">
+        <div class="cl">Nombre del archivo</div>
+        <input class="tin" type="text" id="expName" value="export" style="width:100%">
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <button class="btn bp bf" id="btnExGlb">↓ Exportar .GLB</button>
+        <button class="btn bpu bf" id="btnExJs">↓ Código Three.js</button>
+        <button class="btn bam bf" id="btnExJson">↓ JSON geometría</button>
+      </div>
+    </div>
+
+    <div class="sec" id="trp" style="display:none">
+      <div class="pt">Transformar selección</div>
+      <div style="margin-bottom:7px">
+        <div class="cl" style="margin-bottom:4px">Posición</div>
+        <div class="tgrid">
+          <div class="tw"><div class="tax" style="color:#f87171">X</div><input class="tin" type="number" id="px" value="0" step="0.1" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#4ade80">Y</div><input class="tin" type="number" id="py" value="0" step="0.1" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#60a5fa">Z</div><input class="tin" type="number" id="pz" value="0" step="0.1" oninput="applyT()"></div>
+        </div>
+      </div>
+      <div style="margin-bottom:7px">
+        <div class="cl" style="margin-bottom:4px">Rotación (°)</div>
+        <div class="tgrid">
+          <div class="tw"><div class="tax" style="color:#f87171">X</div><input class="tin" type="number" id="rx" value="0" step="5" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#4ade80">Y</div><input class="tin" type="number" id="ry" value="0" step="5" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#60a5fa">Z</div><input class="tin" type="number" id="rz" value="0" step="5" oninput="applyT()"></div>
+        </div>
+      </div>
+      <div>
+        <div class="cl" style="margin-bottom:4px">Escala</div>
+        <div class="tgrid">
+          <div class="tw"><div class="tax" style="color:#f87171">X</div><input class="tin" type="number" id="ssx" value="1" step="0.1" min="0.01" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#4ade80">Y</div><input class="tin" type="number" id="ssy" value="1" step="0.1" min="0.01" oninput="applyT()"></div>
+          <div class="tw"><div class="tax" style="color:#60a5fa">Z</div><input class="tin" type="number" id="ssz" value="1" step="0.1" min="0.01" oninput="applyT()"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cp">
+      <div class="ch">
+        <div class="ctabs">
+          <div class="ctab on" id="tabJs"   onclick="switchTab('js')">Three.js</div>
+          <div class="ctab"    id="tabJson" onclick="switchTab('json')">JSON</div>
+          <div class="ctab"    id="tabInfo" onclick="switchTab('info')">Info</div>
+        </div>
+        <button class="btn bs" style="padding:2px 6px;font-size:8px" id="btnCopy">⎘ Copiar</button>
+      </div>
+      <div id="cph" class="cph">
+        <div class="cph-i">{ }</div>
+        <div>Carga un archivo para<br>generar código Three.js</div>
+      </div>
+      <pre class="cd" id="cd" style="display:none"></pre>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     JS — usa los mismos vendors del proyecto Asturias
+     /static/vendor/three/three.module.js
+     /static/vendor/three/OrbitControls.js
+     Los loaders adicionales se espera que estén en la misma carpeta.
+     Si no existen, añade los archivos de:
+     https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/
+──────────────────────────────────────────────────────────────────────────── -->
+<script src="/static/vendor/imagetracer/imagetracer.js"></script>
+<script type="module">
+import * as THREE          from '/static/vendor/three/three.module.js';
+import { OrbitControls }   from '/static/vendor/three/OrbitControls.js';
+import { GLTFLoader }      from '/static/vendor/three/GLTFLoader.js?v=2';
+import { SVGLoader }       from '/static/vendor/three/SVGLoader.js?v=2';
+import { GLTFExporter }    from '/static/vendor/three/GLTFExporter.js?v=2';
+import { TransformControls } from '/static/vendor/three/TransformControls.js';
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const $  = id => document.getElementById(id);
+const st = m  => { $('stTxt').textContent = m; };
+const showLoad = (on, msg) => {
+  $('lov').classList.toggle('on', on);
+  if (msg) $('lmsg').textContent = msg;
+};
+function toast(msg, type = 'ok') {
+  const c = $('toasts');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = (type === 'err' ? '✗  ' : '✓  ') + msg;
+  c.appendChild(t);
+  setTimeout(() => {
+    t.style.transition = 'opacity .3s';
+    t.style.opacity = '0';
+    setTimeout(() => t.remove(), 350);
+  }, 3000);
+}
+function dlBlob(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name; a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function isLight(hex) {
+  const c = new THREE.Color(hex);
+  return (c.r * 299 + c.g * 587 + c.b * 114) / 1000 > 0.5;
+}
+function hl(code) {
+  return code
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\/\/[^\n]*/g,       m => `<span class="cm">${m}</span>`)
+    .replace(/\b(import|export|const|let|var|function|return|new|if|for|of|from)\b/g,
+                                  m => `<span class="kw">${m}</span>`)
+    .replace(/\b(THREE\.[A-Z][A-Za-z]+)\b/g,
+                                  m => `<span class="fn">${m}</span>`)
+    .replace(/(-?\d+\.?\d+)/g,    m => `<span class="nm">${m}</span>`)
+    .replace(/'([^']*)'/g,        m => `<span class="st">${m}</span>`);
+}
+
+// ── Scene setup ───────────────────────────────────────────────────────────────
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x05050c);
+
+let grid = new THREE.GridHelper(20, 40, 0x1a1a2e, 0x111128);
+scene.add(grid);
+scene.add(new THREE.AxesHelper(1.5));
+scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+const dl1 = new THREE.DirectionalLight(0xffffff, 0.9);
+dl1.position.set(5, 10, 7); scene.add(dl1);
+const dl2 = new THREE.DirectionalLight(0x7c3aed, 0.3);
+dl2.position.set(-5, 3, -7); scene.add(dl2);
+scene.add(new THREE.HemisphereLight(0x88ffcc, 0x1a0533, 0.25));
+
+// ── Renderer ──────────────────────────────────────────────────────────────────
+const vp = $('vp');
+const renderer = new THREE.WebGLRenderer({ canvas: $('tc'), antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(vp.clientWidth, vp.clientHeight);
+
+// ── Camera & Controls ─────────────────────────────────────────────────────────
+const camera = new THREE.PerspectiveCamera(50, vp.clientWidth / vp.clientHeight, 0.001, 2000);
+camera.position.set(3, 3, 5);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+
+new ResizeObserver(() => {
+  camera.aspect = vp.clientWidth / vp.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(vp.clientWidth, vp.clientHeight);
+}).observe(vp);
+
+(function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); })();
+st('Listo — arrastra un GLB o SVG');
+
+// ── TransformControls setup ────────────────────────────────────────────────────
+const tc = new TransformControls(camera, renderer.domElement);
+tc.setSize(0.9);
+// r163+: TransformControls no longer extends Object3D — add its helper instead
+scene.add(tc.getHelper());
+tc.addEventListener('dragging-changed', e => { controls.enabled = !e.value; });
+tc.addEventListener('change', () => {
+  if (_tcTarget) {
+    syncXfPanel(_tcTarget);
+    refreshCode();
+  }
+});
+let _tcTarget = null;
+let _tcMode   = null;
+
+window.setTcMode = function(mode) {
+  _tcMode = mode;
+  ['T','R','S','X'].forEach(k => $('tc'+k).classList.remove('on'));
+  if (!mode) {
+    tc.detach();
+    _tcTarget = null;
+  } else {
+    const target = selMesh || (selObj && selObj.group);
+    if (target) { tc.attach(target); _tcTarget = target; }
+    tc.setMode(mode);
+    const map = { translate:'T', rotate:'R', scale:'S' };
+    if (map[mode]) $('tc'+map[mode]).classList.add('on');
+  }
+};
+
+// ── Raycaster (Select tool) ───────────────────────────────────────────────────
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let _ptrDown = null;
+renderer.domElement.addEventListener('pointerdown', e => { _ptrDown = {x:e.clientX, y:e.clientY}; });
+renderer.domElement.addEventListener('click', e => {
+  if (activeTool !== 'select' || !_ptrDown) return;
+  const dx = e.clientX - _ptrDown.x, dy = e.clientY - _ptrDown.y;
+  _ptrDown = null;
+  if (dx*dx + dy*dy > 25) return; // guard: era drag de cámara
+  const rect = renderer.domElement.getBoundingClientRect();
+  mouse.x =  ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+  mouse.y = -((e.clientY - rect.top)  / rect.height) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  const candidates = [];
+  objs.forEach(o => o.group.traverse(c => { if (c.isMesh) candidates.push({mesh:c, obj:o}); }));
+  const hits = raycaster.intersectObjects(candidates.map(c=>c.mesh), false);
+  if (!hits.length) { selectObj(null); return; }
+  const found = candidates.find(c => c.mesh === hits[0].object);
+  if (found) { selectObj(found.obj); found.obj.type==='svg'?genSVGCode(found.obj):genGLBCode(found.obj); }
+});
+
+// ── State ─────────────────────────────────────────────────────────────────────
+const objs = [];
+let selObj = null, svgCache = null, codeTab = 'js', wireMode = false;
+let activeTool = 'select', selMesh = null, pathOverrides = {};
+const codes = { js: '', json: '', info: '' };
+
+// ── Background picker ─────────────────────────────────────────────────────────
+function applyBg(hex, swEl) {
+  currentBgHex = hex;
+  if (!refImgVisible) scene.background = new THREE.Color(hex);
+  scene.remove(grid);
+  const lt = isLight(hex);
+  grid = new THREE.GridHelper(20, 40, lt ? 0x888888 : 0x1a1a2e, lt ? 0xaaaaaa : 0x111128);
+  scene.add(grid);
+  document.querySelectorAll('.sw').forEach(s => s.classList.remove('on'));
+  if (swEl) swEl.classList.add('on');
+}
+document.querySelectorAll('.sw:not(.sw-pick)').forEach(s => {
+  s.addEventListener('click', () => applyBg(s.dataset.hex, s));
+});
+$('bgPick').addEventListener('input', function () { applyBg(this.value, null); });
+
+// ── File input ────────────────────────────────────────────────────────────────
+$('fi').addEventListener('change', e => {
+  if (e.target.files[0]) processFile(e.target.files[0]);
+  e.target.value = '';
+});
+$('fiMergeGlb').addEventListener('change', e => { if(e.target.files[0]) mergeGLB(e.target); });
+$('fiMergeSvg').addEventListener('change', e => { if(e.target.files[0]) mergeSVG(e.target); });
+
+// ── Drag & drop ───────────────────────────────────────────────────────────────
+const vdd = $('vdd'), dz = $('dz');
+document.addEventListener('dragenter', e => { e.preventDefault(); vdd.classList.add('on'); });
+document.addEventListener('dragover',  e => e.preventDefault());
+document.addEventListener('dragleave', e => { if (!e.relatedTarget || e.relatedTarget === document.documentElement) vdd.classList.remove('on'); });
+document.addEventListener('drop', e => { e.preventDefault(); vdd.classList.remove('on'); if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]); });
+dz.addEventListener('dragenter', e => { e.preventDefault(); dz.classList.add('over'); });
+dz.addEventListener('dragover',  e => e.preventDefault());
+dz.addEventListener('dragleave', () => dz.classList.remove('over'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('over'); if (e.dataTransfer.files[0]) processFile(e.dataTransfer.files[0]); });
+
+// ── Process file ──────────────────────────────────────────────────────────────
+function processFile(f) {
+  const n = f.name.toLowerCase();
+  if (n.endsWith('.glb') || n.endsWith('.gltf')) readFile(f, 'buffer', buf => loadGLB(buf, f.name));
+  else if (n.endsWith('.svg')) readFile(f, 'text', txt => loadSVG(txt, f.name));
+  else toast('Usa .glb, .gltf o .svg', 'err');
+}
+function readFile(f, mode, cb) {
+  showLoad(true, 'Leyendo archivo...');
+  const r = new FileReader();
+  r.onload  = e => cb(e.target.result);
+  r.onerror = () => { showLoad(false); toast('Error leyendo archivo', 'err'); };
+  mode === 'buffer' ? r.readAsArrayBuffer(f) : r.readAsText(f);
+}
+
+// ── Load GLB from URL ──────────────────────────────────────────────────────────
+async function loadGLBFromURL(url) {
+  if (!url.trim()) { toast('Introduce una URL','err'); return; }
+  showLoad(true, 'Descargando...');
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const buf = await res.arrayBuffer();
+    const name = url.split('/').pop().split('?')[0] || 'model.glb';
+    loadGLB(buf, name);
+  } catch(e) { showLoad(false); toast('Error: ' + e.message, 'err'); }
+}
+
+// ── Load GLB ──────────────────────────────────────────────────────────────────
+function loadGLB(buffer, name) {
+  st('Parseando GLB...'); showLoad(true, 'Procesando modelo...');
+  new GLTFLoader().parse(buffer, '', gltf => {
+    const g = gltf.scene;
+    const box = new THREE.Box3().setFromObject(g);
+    const sz  = box.getSize(new THREE.Vector3());
+    g.scale.setScalar(3 / Math.max(sz.x, sz.y, sz.z, 0.001));
+    box.setFromObject(g);
+    g.position.sub(box.getCenter(new THREE.Vector3()));
+    g.position.y += box.getSize(new THREE.Vector3()).y / 2;
+    scene.add(g);
+    const o = { id: Date.now(), name, type: 'glb', group: g };
+    objs.push(o); selectObj(o); updateList(); genGLBCode(o); fitCam(g);
+    showLoad(false); st('GLB: ' + name); toast('GLB cargado', 'ok');
+  }, err => { showLoad(false); console.error(err); toast('Error parseando GLB', 'err'); });
+}
+
+// ── Load SVG ──────────────────────────────────────────────────────────────────
+function loadSVG(text, name) {
+  st('Procesando SVG...');
+  try {
+    const data = new SVGLoader().parse(text);
+    svgCache = { data, name };
+    pathOverrides = {};
+    $('svgCtrl').style.display = 'block';
+    $('matNoSel').style.display = 'none';
+    buildSVG(svgCache);
+    if (activeTool === 'paths') buildPathList();
+    st('SVG: ' + name + ' (' + data.paths.length + ' paths)');
+    toast('SVG → 3D: ' + data.paths.length + ' paths', 'ok');
+  } catch (e) { showLoad(false); console.error(e); toast('Error SVG: ' + e.message, 'err'); }
+}
+
+// ── Build SVG extrusion ───────────────────────────────────────────────────────
+function buildSVG(sd) {
+  for (let i = objs.length - 1; i >= 0; i--)
+    if (objs[i].svgSrc === sd.name) { scene.remove(objs[i].group); objs.splice(i, 1); }
+
+  const depth  = parseFloat($('ed').value);
+  const scale  = parseFloat($('es').value);
+  const matT   = $('mt').value;
+  const color  = $('oc').value;
+  const useSvgC = $('usc').checked;
+  const dbl    = $('ds').checked;
+  const flat   = $('fs').checked;
+  const { paths } = sd.data;
+
+  let mnX=1e9,mnY=1e9,mxX=-1e9,mxY=-1e9;
+  paths.forEach(p => p.subPaths.forEach(sp => sp.getPoints().forEach(pt => {
+    mnX=Math.min(mnX,pt.x); mnY=Math.min(mnY,pt.y);
+    mxX=Math.max(mxX,pt.x); mxY=Math.max(mxY,pt.y);
+  })));
+  if (!isFinite(mnX)) { showLoad(false); toast('SVG sin paths válidos', 'err'); return; }
+
+  const cx = (mnX+mxX)/2, cy = (mnY+mxY)/2;
+  const svgS = scale / Math.max(mxX-mnX, mxY-mnY, 0.001);
+  const group = new THREE.Group();
+  const meshData = [];
+
+  paths.forEach((path, i) => {
+    if (pathOverrides[i]?.visible === false) return;
+    const shapes = SVGLoader.createShapes(path);
+    const baseColor = (path.color && useSvgC) ? path.color : new THREE.Color(color);
+    const fc = pathOverrides[i]?.color ? new THREE.Color(pathOverrides[i].color) : baseColor;
+    const pathDepth = pathOverrides[i]?.depth ?? depth;
+    shapes.forEach(shape => {
+      const geom = new THREE.ExtrudeGeometry(shape, { depth: pathDepth/svgS, bevelEnabled:false, curveSegments:5 });
+      const mp = { color: fc, flatShading: flat, side: dbl ? THREE.DoubleSide : THREE.FrontSide };
+      let mat;
+      if      (matT==='wire')     mat = new THREE.MeshBasicMaterial({ color: fc, wireframe: true });
+      else if (matT==='standard') mat = new THREE.MeshStandardMaterial({ ...mp, roughness:.6, metalness:.1 });
+      else if (matT==='phong')    mat = new THREE.MeshPhongMaterial(mp);
+      else                        mat = new THREE.MeshLambertMaterial(mp);
+      const mesh = new THREE.Mesh(geom, mat);
+      mesh.scale.set(svgS, -svgS, svgS);
+      mesh.position.set(-cx*svgS, cy*svgS, 0);
+      group.add(mesh);
+      const pts = shape.getPoints(8).map(pt => [
+        +((pt.x - cx) * svgS).toFixed(5),
+        +((cy - pt.y) * svgS).toFixed(5)
+      ]);
+      meshData.push({ pts, color: '#'+new THREE.Color(fc).getHexString(), depth: pathDepth, matT, dbl, flat });
+    });
+  });
+
+  if (!group.children.length) { showLoad(false); toast('Sin formas en el SVG', 'err'); return; }
+  scene.add(group);
+  const o = { id: Date.now(), name: sd.name, type: 'svg', group, svgSrc: sd.name, meshData };
+  objs.push(o); selectObj(o); updateList(); genSVGCode(o); fitCam(group);
+  showLoad(false);
+}
+window.rebuildSVG = () => { if (svgCache) buildSVG(svgCache); };
+
+// ── Camera ────────────────────────────────────────────────────────────────────
+function fitCam(obj) {
+  const box = new THREE.Box3().setFromObject(obj);
+  const sz  = box.getSize(new THREE.Vector3());
+  const ctr = box.getCenter(new THREE.Vector3());
+  const d   = (Math.max(sz.x, sz.y, sz.z, 0.001) / (2 * Math.tan(camera.fov * Math.PI / 360))) * 1.8;
+  controls.target.copy(ctr);
+  camera.position.set(ctr.x + d*.6, ctr.y + d*.5, ctr.z + d);
+  camera.lookAt(ctr); controls.update();
+}
+$('btnReset').onclick = () => { camera.position.set(3,3,5); controls.target.set(0,0,0); controls.update(); };
+$('btnGrid').onclick  = () => { grid.visible = !grid.visible; };
+$('btnClear').onclick = clearScene;
+$('btnWire').onclick  = () => {
+  wireMode = !wireMode;
+  objs.forEach(o => o.group.traverse(c => {
+    if (!c.isMesh) return;
+    if (wireMode) { c._m = c.material; c.material = new THREE.MeshBasicMaterial({ color:0x00f5a0, wireframe:true }); }
+    else if (c._m) { c.material = c._m; }
+  }));
+};
+
+// ── Selection ─────────────────────────────────────────────────────────────────
+function selectObj(o) {
+  selObj = o;
+  $('trp').style.display = o ? 'block' : 'none';
+  if (o) {
+    $('px').value  = o.group.position.x.toFixed(3);
+    $('py').value  = o.group.position.y.toFixed(3);
+    $('pz').value  = o.group.position.z.toFixed(3);
+    $('rx').value  = (o.group.rotation.x * 180/Math.PI).toFixed(1);
+    $('ry').value  = (o.group.rotation.y * 180/Math.PI).toFixed(1);
+    $('rz').value  = (o.group.rotation.z * 180/Math.PI).toFixed(1);
+    $('ssx').value = o.group.scale.x.toFixed(2);
+    $('ssy').value = o.group.scale.y.toFixed(2);
+    $('ssz').value = o.group.scale.z.toFixed(2);
+  }
+  document.querySelectorAll('.oi').forEach(el => el.classList.toggle('sel', el.dataset.id === String(o?.id)));
+  // Reset sub-mesh and update tool panels
+  selMesh = null;
+  tc.detach(); _tcTarget = null; _tcMode = null;
+  ['T','R','S','X'].forEach(k => $('tc'+k).classList.remove('on'));
+  $('tcBar').classList.remove('on');
+  $('xfPanel').classList.remove('on');
+  $('extrudeCtrl').style.display = 'none';
+  if (activeTool === 'inspector') buildMeshTree(o);
+  if (activeTool === 'material' && o) {
+    let firstMesh = null;
+    o.group.traverse(c => { if (!firstMesh && c.isMesh) firstMesh = c; });
+    if (firstMesh) syncMatPanel(firstMesh.material);
+    else { $('meshMatCtrl').style.display='none'; $('matNoSel').style.display = svgCache ? 'none' : ''; }
+  }
+}
+window.applyT = () => {
+  if (!selObj) return;
+  const g = selObj.group;
+  g.position.set(+$('px').value||0, +$('py').value||0, +$('pz').value||0);
+  g.rotation.set((+$('rx').value||0)*Math.PI/180, (+$('ry').value||0)*Math.PI/180, (+$('rz').value||0)*Math.PI/180);
+  g.scale.set(+$('ssx').value||1, +$('ssy').value||1, +$('ssz').value||1);
+};
+
+// ── Objects list ──────────────────────────────────────────────────────────────
+function updateList() {
+  const ol = $('ol');
+  if (!objs.length) { ol.innerHTML = '<div class="emp">Sin objetos<br>Carga un GLB o SVG</div>'; return; }
+  ol.innerHTML = objs.map(o => `
+    <div class="oi${selObj?.id===o.id?' sel':''}" data-id="${o.id}" onclick="selById(${o.id})">
+      <div class="oic ${o.type==='glb'?'iglb':'isvg'}">${o.type==='glb'?'📦':'⬡'}</div>
+      <div class="oname">${o.name}</div>
+      <span class="odel" onclick="event.stopPropagation();delObj(${o.id})">✕</span>
+    </div>`).join('');
+}
+window.selById = id => { const o=objs.find(x=>x.id===id); if(!o) return; selectObj(o); o.type==='svg'?genSVGCode(o):genGLBCode(o); };
+window.delObj  = id => {
+  const i=objs.findIndex(o=>o.id===id); if(i<0) return;
+  scene.remove(objs[i].group); objs.splice(i,1);
+  if (selObj?.id===id) {
+    selObj=null; selMesh=null;
+    $('trp').style.display='none';
+    $('meshMatCtrl').style.display='none';
+    $('matNoSel').style.display = svgCache ? 'none' : '';
+    if (activeTool === 'inspector') buildMeshTree(null);
+  }
+  updateList();
+  if (!objs.length) {
+    $('svgCtrl').style.display='none'; svgCache=null;
+    pathOverrides={}; buildPathList();
+    $('matNoSel').style.display='';
+    showCodePh();
+  }
+  toast('Eliminado','ok');
+};
+function clearScene() {
+  objs.forEach(o => scene.remove(o.group)); objs.length=0;
+  selObj=null; svgCache=null; selMesh=null; pathOverrides={};
+  $('svgCtrl').style.display='none'; $('trp').style.display='none';
+  $('meshMatCtrl').style.display='none'; $('matNoSel').style.display='';
+  updateList(); buildPathList();
+  if (activeTool === 'inspector') buildMeshTree(null);
+  showCodePh(); st('Escena limpiada'); toast('Limpio','ok');
+}
+
+// ── Tool system ───────────────────────────────────────────────────────────────
+const TOOLS = ['select','inspector','material','primitives','paths','image','build','code'];
+function setTool(name) {
+  activeTool = name;
+  TOOLS.forEach(t => {
+    const cap = t[0].toUpperCase() + t.slice(1);
+    $('tb'+cap).classList.toggle('on', t === name);
+    $('tp'+cap).classList.toggle('on', t === name);
+  });
+  if (name === 'inspector') buildMeshTree(selObj);
+  if (name === 'paths')     buildPathList();
+  if (name === 'material') {
+    unhoverMesh(); // ensure hover red is cleared before reading material color
+    if (selMesh) {
+      syncMatPanel(selMesh.material);
+    } else if (selObj) {
+      let firstMesh = null;
+      selObj.group.traverse(c => { if (!firstMesh && c.isMesh) firstMesh = c; });
+      if (firstMesh) syncMatPanel(firstMesh.material);
+    }
+    const hasMeshCtrl = $('meshMatCtrl').style.display !== 'none';
+    const hasSvgCtrl  = $('svgCtrl').style.display !== 'none';
+    $('matNoSel').style.display = (hasMeshCtrl || hasSvgCtrl) ? 'none' : '';
+  }
+}
+window.setTool = setTool;
+
+// ── Hover highlight ────────────────────────────────────────────────────────────
+let _hvMesh = null, _hvOrigColor = null;
+window.hoverMesh = function(uuid) {
+  if (!selObj) return;
+  let found = null;
+  selObj.group.traverse(c => { if (c.uuid === uuid && c.isMesh) found = c; });
+  if (!found || found === selMesh) return;
+  _hvMesh = found;
+  const mat = found.material;
+  if (mat.color) {
+    _hvOrigColor = mat.color.getHex();
+    mat.color.setHex(0xff2222);
+  } else if (mat.emissive) {
+    _hvOrigColor = { emissive: mat.emissive.getHex() };
+    mat.emissive.setHex(0xff0000);
+  }
+};
+window.unhoverMesh = function() {
+  if (!_hvMesh) return;
+  const mat = _hvMesh.material;
+  if (_hvOrigColor !== null) {
+    if (typeof _hvOrigColor === 'object' && _hvOrigColor.emissive !== undefined) {
+      if (mat.emissive) mat.emissive.setHex(_hvOrigColor.emissive);
+    } else {
+      if (mat.color) mat.color.setHex(_hvOrigColor);
+    }
+  }
+  _hvMesh = null; _hvOrigColor = null;
+};
+
+// ── XF panel sync ─────────────────────────────────────────────────────────────
+function syncXfPanel(node) {
+  if (!node) { $('xfPanel').classList.remove('on'); return; }
+  $('xfPanel').classList.add('on');
+  $('xPx').value = node.position.x.toFixed(3);
+  $('xPy').value = node.position.y.toFixed(3);
+  $('xPz').value = node.position.z.toFixed(3);
+  $('xRx').value = (node.rotation.x * 180/Math.PI).toFixed(1);
+  $('xRy').value = (node.rotation.y * 180/Math.PI).toFixed(1);
+  $('xRz').value = (node.rotation.z * 180/Math.PI).toFixed(1);
+  $('xSx').value = node.scale.x.toFixed(3);
+  $('xSy').value = node.scale.y.toFixed(3);
+  $('xSz').value = node.scale.z.toFixed(3);
+}
+window.applyXfPanel = function() {
+  const node = selMesh || (selObj && selObj.group);
+  if (!node) return;
+  node.position.set(+$('xPx').value||0, +$('xPy').value||0, +$('xPz').value||0);
+  node.rotation.set((+$('xRx').value||0)*Math.PI/180, (+$('xRy').value||0)*Math.PI/180, (+$('xRz').value||0)*Math.PI/180);
+  node.scale.set(+$('xSx').value||1, +$('xSy').value||1, +$('xSz').value||1);
+  refreshCode();
+};
+
+// ── Inspector: mesh tree ───────────────────────────────────────────────────────
+function buildMeshTree(o) {
+  const container = $('mtree');
+  const bar = $('inspBar');
+  if (!o) {
+    container.innerHTML = '<div class="emp">Selecciona un objeto<br>para inspeccionar</div>';
+    bar.style.display = 'none';
+    return;
+  }
+  bar.style.display = (o.type === 'glb' || o.type === 'prim') ? 'flex' : 'none';
+  let html = '';
+  function walk(node, depth) {
+    if (node.isLight || node.isCamera) return;
+    const name      = node.name || node.type || 'Node';
+    const eyeIcon   = node.visible ? '👁' : '🚫';
+    const typeLabel = node.isMesh ? 'mesh' : (node.isGroup ? 'grp' : 'obj');
+    const indent    = 5 + depth * 12;
+    const isSel     = selMesh && node.uuid === selMesh.uuid;
+    const delBtn    = depth > 0
+      ? `<span class="mti-del" onclick="event.stopPropagation();deleteNode('${node.uuid}')" title="Eliminar">🗑</span>`
+      : '';
+    const hoverAttrs = node.isMesh
+      ? `onmouseenter="hoverMesh('${node.uuid}')" onmouseleave="unhoverMesh()"`
+      : '';
+    html += `<div class="mti${isSel?' sel':''}" style="padding-left:${indent}px" data-uuid="${node.uuid}" onclick="selectMesh('${node.uuid}')" ${hoverAttrs}>
+      <span class="mti-eye" onclick="event.stopPropagation();toggleMeshVis('${node.uuid}')">${eyeIcon}</span>
+      <span class="mti-lbl">${name}</span>
+      <span class="mti-type">${typeLabel}</span>
+      ${delBtn}
+    </div>`;
+    node.children?.forEach(c => walk(c, depth + 1));
+  }
+  walk(o.group, 0);
+  container.innerHTML = html || '<div class="emp">Sin meshes detectados</div>';
+}
+window.selectMesh = (uuid) => {
+  if (!selObj) return;
+  // Clean up any active hover highlight before reading material color
+  unhoverMesh();
+  let found = null;
+  selObj.group.traverse(c => { if (c.uuid === uuid && c.isMesh) found = c; });
+  // also select non-mesh nodes (groups/objects) for xfPanel
+  if (!found) selObj.group.traverse(c => { if (c.uuid === uuid) found = c; });
+  if (!found) return;
+  const isMesh = found.isMesh;
+  selMesh = isMesh ? found : null;
+  if (isMesh && found.material && found.material.emissive !== undefined) {
+    const orig = found.material.emissive.getHex();
+    found.material.emissive.setHex(0x00f5a0);
+    setTimeout(() => { if (found.material && found.material.emissive) found.material.emissive.setHex(orig); }, 400);
+  }
+  document.querySelectorAll('.mti').forEach(el => el.classList.toggle('sel', el.dataset.uuid === uuid));
+  // Show tcBar and xfPanel (stay in Inspector if already there)
+  $('tcBar').classList.add('on');
+  syncXfPanel(found);
+  // Attach TC to this node if a mode is active
+  if (_tcMode) { tc.attach(found); _tcTarget = found; }
+  // Extrude Z control: show for non-SVG meshes (in Material panel)
+  const isSvg = selObj && selObj.type === 'svg';
+  $('extrudeCtrl').style.display = (isMesh && !isSvg) ? 'block' : 'none';
+  if (isMesh && !isSvg) {
+    $('extZ').value = found.scale.z.toFixed(3);
+    $('extTxt').textContent = found.scale.z.toFixed(2);
+  }
+  // Switch to Material only if NOT currently in Inspector (to preserve tcBar/xfPanel visibility)
+  if (isMesh && activeTool !== 'inspector') {
+    setTool('material');
+    syncMatPanel(found.material);
+  } else if (isMesh && activeTool === 'inspector') {
+    // Still sync the material panel in background so it's ready when user switches
+    syncMatPanel(found.material);
+  }
+};
+window.toggleMeshVis = (uuid) => {
+  if (!selObj) return;
+  selObj.group.traverse(c => { if (c.uuid === uuid) c.visible = !c.visible; });
+  buildMeshTree(selObj);
+};
+
+// ── Material: sync + build + apply ────────────────────────────────────────────
+function syncMatPanel(mat) {
+  if (!mat) return;
+  $('meshMatCtrl').style.display = 'block';
+  $('matNoSel').style.display = 'none';
+  let type = 'lambert';
+  if (mat.isMeshStandardMaterial) type = 'standard';
+  else if (mat.isMeshPhongMaterial) type = 'phong';
+  else if (mat.isMeshBasicMaterial) type = mat.wireframe ? 'wire' : 'basic';
+  $('mType').value = type;
+  onMatTypeChange();
+  const col = mat.color ? ('#' + mat.color.getHexString()) : '#ffffff';
+  $('mCol').value = col;
+  $('mHex').value = col;
+  const op = mat.opacity ?? 1;
+  $('mOp').value = op;
+  $('mOpTxt').textContent = op.toFixed(2);
+  if (mat.isMeshStandardMaterial) {
+    $('mRo').value = mat.roughness ?? 0.5;
+    $('mRoTxt').textContent = (mat.roughness ?? 0.5).toFixed(2);
+    $('mMe').value = mat.metalness ?? 0.1;
+    $('mMeTxt').textContent = (mat.metalness ?? 0.1).toFixed(2);
+  }
+}
+window.onMatTypeChange = function() {
+  $('mPbr').style.display = $('mType').value === 'standard' ? 'block' : 'none';
+};
+function buildMaterial(type, color, opacity, ro, me) {
+  const col = new THREE.Color(color);
+  const transparent = opacity < 1;
+  if (type === 'wire')     return new THREE.MeshBasicMaterial({ color: col, wireframe: true });
+  if (type === 'basic')    return new THREE.MeshBasicMaterial({ color: col, transparent, opacity });
+  if (type === 'standard') return new THREE.MeshStandardMaterial({ color: col, transparent, opacity, roughness: ro, metalness: me });
+  if (type === 'phong')    return new THREE.MeshPhongMaterial({ color: col, transparent, opacity });
+  return new THREE.MeshLambertMaterial({ color: col, transparent, opacity });
+}
+function applyMaterialToMesh(mesh) {
+  const type    = $('mType').value;
+  const color   = $('mCol').value;
+  const opacity = parseFloat($('mOp').value);
+  const ro      = parseFloat($('mRo').value);
+  const me      = parseFloat($('mMe').value);
+  // If this mesh is currently hovered (red), update _hvOrigColor so unhoverMesh
+  // won't overwrite the new color when the mouse eventually leaves
+  if (mesh === _hvMesh && _hvOrigColor !== null && typeof _hvOrigColor !== 'object') {
+    _hvOrigColor = parseInt(color.replace('#',''), 16);
+  }
+  mesh.material = buildMaterial(type, color, opacity, ro, me);
+}
+$('btnApplyMat').onclick = () => {
+  if (selMesh) {
+    applyMaterialToMesh(selMesh);
+    toast('Material aplicado al mesh', 'ok');
+  } else if (selObj) {
+    selObj.group.traverse(c => { if (c.isMesh) applyMaterialToMesh(c); });
+    toast('Material aplicado al objeto', 'ok');
+  } else { toast('Sin selección', 'err'); return; }
+  refreshCode();
+};
+$('btnApplyMatAll').onclick = () => {
+  if (!objs.length) { toast('Sin objetos', 'err'); return; }
+  objs.forEach(o => o.group.traverse(c => { if (c.isMesh) applyMaterialToMesh(c); }));
+  refreshCode();
+  toast('Material aplicado a toda la escena', 'ok');
+};
+
+// ── Primitivas ─────────────────────────────────────────────────────────────────
+function addPrimitive(type) {
+  const sz  = parseFloat($('primSz').value)  || 1;
+  const seg = parseInt($('primSeg').value)   || 16;
+  const col = $('primCol').value;
+  let geom;
+  if      (type === 'box')      geom = new THREE.BoxGeometry(sz, sz, sz);
+  else if (type === 'sphere')   geom = new THREE.SphereGeometry(sz/2, seg, seg);
+  else if (type === 'cylinder') geom = new THREE.CylinderGeometry(sz/2, sz/2, sz, seg);
+  else if (type === 'plane')    geom = new THREE.PlaneGeometry(sz, sz);
+  else if (type === 'torus')    geom = new THREE.TorusGeometry(sz/2, sz/6, seg, seg*2);
+  else if (type === 'cone')     geom = new THREE.ConeGeometry(sz/2, sz, seg);
+  else return;
+  const mat  = new THREE.MeshStandardMaterial({ color: new THREE.Color(col), roughness:0.5, metalness:0.1 });
+  const mesh = new THREE.Mesh(geom, mat);
+  if (type === 'plane') mesh.rotateX(-Math.PI/2);
+  const group = new THREE.Group();
+  group.add(mesh);
+  scene.add(group);
+  const name = type + '_' + (objs.length + 1);
+  const o = { id: Date.now(), name, type: 'prim', group };
+  objs.push(o);
+  selectObj(o); updateList(); genGLBCode(o);
+  setTool('select');
+  toast(type + ' añadido', 'ok');
+}
+window.addPrimitive = addPrimitive;
+
+// ── Eliminar nodo del árbol por uuid (Mesh, Object3D, Group) ──────────────────
+function deleteNode(uuid) {
+  if (!selObj) return;
+  let found = null;
+  selObj.group.traverse(c => { if (c.uuid === uuid) found = c; });
+  if (!found || found === selObj.group) { toast('No se puede eliminar el root','err'); return; }
+  if (found.isMesh) {
+    found.geometry?.dispose();
+    if (Array.isArray(found.material)) found.material.forEach(m=>m.dispose());
+    else found.material?.dispose();
+  }
+  if (selMesh?.uuid === uuid) {
+    selMesh = null;
+    $('meshMatCtrl').style.display = 'none';
+    $('matNoSel').style.display = '';
+  }
+  found.removeFromParent();
+  buildMeshTree(selObj);
+  toast('Eliminado: ' + (found.name || 'nodo'), 'ok');
+}
+window.deleteNode = deleteNode;
+
+// ── Añadir primitiva al grupo del GLB seleccionado ────────────────────────────
+function addPrimToGLB(type) {
+  if (!selObj || (selObj.type!=='glb' && selObj.type!=='prim')) {
+    toast('Selecciona un GLB primero','err'); return;
+  }
+  const geoms = {
+    box:      new THREE.BoxGeometry(1,1,1),
+    sphere:   new THREE.SphereGeometry(0.5,16,16),
+    cylinder: new THREE.CylinderGeometry(0.5,0.5,1,16),
+  };
+  const mesh = new THREE.Mesh(geoms[type], new THREE.MeshStandardMaterial({color:0x00f5a0,roughness:.5,metalness:.1}));
+  mesh.name = type+'_added';
+  selObj.group.add(mesh);
+  buildMeshTree(selObj);
+  toast(type+' añadido','ok');
+}
+window.addPrimToGLB = addPrimToGLB;
+
+// ── Fusionar segundo GLB en selObj.group ──────────────────────────────────────
+function mergeGLB(input) {
+  if (!selObj || (selObj.type!=='glb' && selObj.type!=='prim')) {
+    toast('Selecciona un GLB primero','err'); input.value=''; return;
+  }
+  const f = input.files[0]; if (!f) return;
+  readFile(f, 'buffer', buf => {
+    new GLTFLoader().parse(buf, '', gltf => {
+      const toAdd = [...gltf.scene.children];
+      toAdd.forEach(c => { gltf.scene.remove(c); selObj.group.add(c); });
+      buildMeshTree(selObj);
+      showLoad(false);
+      toast('GLB fusionado: '+f.name,'ok');
+    }, err => { showLoad(false); toast('Error GLB: '+err.message,'err'); });
+  });
+  input.value='';
+}
+window.mergeGLB = mergeGLB;
+
+// ── Borrar path permanentemente con re-index de pathOverrides ─────────────────
+function deletePathPermanently(i) {
+  if (!svgCache) return;
+  svgCache.data.paths.splice(i, 1);
+  const newOv = {};
+  Object.keys(pathOverrides).forEach(k => {
+    const ki = parseInt(k);
+    if      (ki < i) newOv[ki]   = pathOverrides[ki];
+    else if (ki > i) newOv[ki-1] = pathOverrides[ki];
+  });
+  pathOverrides = newOv;
+  buildPathList();
+  rebuildSVG();
+  toast('Path '+i+' eliminado','ok');
+}
+window.deletePathPermanently = deletePathPermanently;
+
+// ── Fusionar otro SVG: concatenar paths al svgCache actual ────────────────────
+function mergeSVG(input) {
+  if (!svgCache) { toast('Carga un SVG primero','err'); input.value=''; return; }
+  const f = input.files[0]; if (!f) return;
+  readFile(f, 'text', txt => {
+    try {
+      const inc = new SVGLoader().parse(txt);
+      const prev = svgCache.data.paths.length;
+      svgCache.data.paths.push(...inc.paths);
+      buildPathList(); rebuildSVG();
+      showLoad(false);
+      toast('SVG fusionado: +'+inc.paths.length+' paths ('+prev+'→'+svgCache.data.paths.length+')','ok');
+    } catch(e) { showLoad(false); toast('Error SVG: '+e.message,'err'); }
+  });
+  input.value='';
+}
+window.mergeSVG = mergeSVG;
+
+// ── Paths: lista y overrides ──────────────────────────────────────────────────
+function buildPathList() {
+  if (!svgCache) {
+    $('pathNoSvg').style.display = '';
+    $('plist').style.display = 'none';
+    $('pathBar').style.display = 'none';
+    return;
+  }
+  $('pathNoSvg').style.display = 'none';
+  $('plist').style.display = 'block';
+  $('pathBar').style.display = 'flex';
+  const { paths } = svgCache.data;
+  const globalDepth = parseFloat($('ed').value);
+  $('plist').innerHTML = paths.map((path, i) => {
+    const ov      = pathOverrides[i] || {};
+    const visible = ov.visible !== false;
+    const baseHex = path.color ? ('#' + new THREE.Color(path.color).getHexString()) : '#00f5a0';
+    const color   = ov.color || baseHex;
+    const depth   = (ov.depth ?? globalDepth).toFixed(2);
+    return `<div class="pli" style="opacity:${visible?1:.4}">
+      <span class="pli-eye" onclick="togglePathVis(${i})">${visible?'👁':'🚫'}</span>
+      <span class="pli-lbl">Path ${i}</span>
+      <input class="pli-col" type="color" value="${color}" oninput="setPathColor(${i},this.value)" title="Color">
+      <input class="pli-dep" type="number" value="${depth}" step="0.01" min="0.01" max="5"
+        oninput="setPathDepth(${i},parseFloat(this.value)||0.01)" title="Profundidad">
+      <span class="pli-del" onclick="deletePathPermanently(${i})" title="Eliminar path">🗑</span>
+    </div>`;
+  }).join('');
+}
+window.togglePathVis = (i) => {
+  const ov = pathOverrides[i] || {};
+  pathOverrides[i] = { ...ov, visible: ov.visible === false };
+  buildPathList(); rebuildSVG();
+};
+window.setPathColor = (i, v) => {
+  pathOverrides[i] = { ...(pathOverrides[i]||{}), color: v };
+  rebuildSVG();
+};
+window.setPathDepth = (i, v) => {
+  pathOverrides[i] = { ...(pathOverrides[i]||{}), depth: v };
+  rebuildSVG();
+};
+$('btnPathReset').addEventListener('click', () => {
+  pathOverrides = {};
+  buildPathList();
+  rebuildSVG();
+});
+
+// ── Extrude Z ─────────────────────────────────────────────────────────────────
+window.applyExtrudeZ = function(v) {
+  if (!selMesh) return;
+  selMesh.scale.z = v;
+  syncXfPanel(selMesh);
+  refreshCode();
+};
+
+// ── refreshCode + genSceneJSON ────────────────────────────────────────────────
+function refreshCode() {
+  if (!selObj) return;
+  if (selObj.type === 'svg') genSVGCode(selObj);
+  else genGLBCode(selObj);
+  genSceneJSON();
+}
+function genSceneJSON() {
+  const data = { type:'scene', exportado: new Date().toISOString(), objetos:[] };
+  objs.forEach(o => {
+    const entry = {
+      nombre: o.name, tipo: o.type,
+      position: o.group.position.toArray(),
+      rotation: [o.group.rotation.x, o.group.rotation.y, o.group.rotation.z],
+      scale: o.group.scale.toArray(),
+      meshes: []
+    };
+    o.group.traverse(c => {
+      if (!c.isMesh) return;
+      const m = c.material;
+      entry.meshes.push({
+        nombre: c.name || c.uuid.slice(0,8),
+        position: c.position.toArray(),
+        rotation: [c.rotation.x, c.rotation.y, c.rotation.z],
+        scale: c.scale.toArray(),
+        material: {
+          tipo: m.type,
+          color: m.color ? '#'+m.color.getHexString() : null,
+          opacidad: m.opacity ?? 1,
+          roughness: m.roughness,
+          metalness: m.metalness,
+          wireframe: m.wireframe ?? false
+        }
+      });
+    });
+    data.objetos.push(entry);
+  });
+  codes.json = JSON.stringify(data, null, 2);
+  if (codeTab === 'json') showCode(codes.json);
+}
+
+// ── Code generation ───────────────────────────────────────────────────────────
+function genSVGCode(o) {
+  const meshLines = [];
+  o.meshData.forEach((m, i) => {
+    const v  = `mesh${i}`;
+    const mc = m.matT==='standard'?'MeshStandardMaterial':m.matT==='phong'?'MeshPhongMaterial':'MeshLambertMaterial';
+    meshLines.push(
+      `// Shape ${i}`,
+      `const ${v}_pts=[${m.pts.map(p=>`[${p[0]},${p[1]}]`).join(',')}];`,
+      `const ${v}_s=new THREE.Shape(); ${v}_s.moveTo(${v}_pts[0][0],${v}_pts[0][1]);`,
+      `for(let i=1;i<${v}_pts.length;i++) ${v}_s.lineTo(${v}_pts[i][0],${v}_pts[i][1]);`,
+      `const ${v}=new THREE.Mesh(`,
+      `  new THREE.ExtrudeGeometry(${v}_s,{depth:${m.depth},bevelEnabled:false,curveSegments:5}),`,
+      `  new THREE.${mc}({color:'${m.color}',flatShading:${m.flat},side:THREE.${m.dbl?'DoubleSide':'FrontSide'}})`,
+      `); scene.add(${v});`,
+      ``
+    );
+  });
+  codes.js = [
+    `// ── 3D LAB — ${o.name} (${o.meshData.length} meshes) ──`,
+    `// npm: npm install three`,
+    `// CDN: import * as THREE from 'https://esm.sh/three@0.172.0';`,
+    `import * as THREE from 'three';`,
+    ``,
+    `const renderer = new THREE.WebGLRenderer({ antialias: true });`,
+    `renderer.setPixelRatio(Math.min(devicePixelRatio, 2));`,
+    `renderer.setSize(window.innerWidth, window.innerHeight);`,
+    `document.body.style.margin = '0';`,
+    `document.body.appendChild(renderer.domElement);`,
+    ``,
+    `const scene = new THREE.Scene();`,
+    `scene.background = new THREE.Color(0x111118);`,
+    `scene.add(new THREE.AmbientLight(0xffffff, 0.45));`,
+    `const dl = new THREE.DirectionalLight(0xffffff, 0.9);`,
+    `dl.position.set(5, 10, 7); scene.add(dl);`,
+    ``,
+    `const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000);`,
+    `camera.position.set(0, 0, 5);`,
+    `window.addEventListener('resize', () => {`,
+    `  camera.aspect = window.innerWidth / window.innerHeight;`,
+    `  camera.updateProjectionMatrix();`,
+    `  renderer.setSize(window.innerWidth, window.innerHeight);`,
+    `});`,
+    ``,
+    ...meshLines,
+    `(function loop() { requestAnimationFrame(loop); renderer.render(scene, camera); })();`,
+  ].join('\n');
+  codes.info = `ARCHIVO: ${o.name}\nTIPO: SVG → ExtrudeGeometry\nMESHES: ${o.meshData.length}\nDEPTH: ${o.meshData[0]?.depth}\nMATERIAL: ${o.meshData[0]?.matT}\n\nCÓMO USAR:\n1. npm install three\n2. El código es un módulo ES listo para ejecutar\n3. O usa el CDN del comentario para proyectos sin bundler\n\nAjusta posición/escala tras importar.`;
+  genSceneJSON();
+  showCode(codes[codeTab]);
+}
+function genGLBCode(o) {
+  codes.js = [
+    `// ── 3D LAB — ${o.name} ──`,
+    `// Coloca '${o.name}' junto a este script (o actualiza el path).`,
+    `// npm: npm install three`,
+    `// CDN alt: import * as THREE from 'https://esm.sh/three@0.172.0';`,
+    `import * as THREE from 'three';`,
+    `import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';`,
+    `// CDN: import { GLTFLoader } from 'https://esm.sh/three@0.172.0/examples/jsm/loaders/GLTFLoader.js';`,
+    ``,
+    `const renderer = new THREE.WebGLRenderer({ antialias: true });`,
+    `renderer.setPixelRatio(Math.min(devicePixelRatio, 2));`,
+    `renderer.setSize(window.innerWidth, window.innerHeight);`,
+    `document.body.style.margin = '0';`,
+    `document.body.appendChild(renderer.domElement);`,
+    ``,
+    `const scene = new THREE.Scene();`,
+    `scene.background = new THREE.Color(0x111118);`,
+    `scene.add(new THREE.AmbientLight(0xffffff, 0.45));`,
+    `const dl = new THREE.DirectionalLight(0xffffff, 0.9);`,
+    `dl.position.set(5, 10, 7); scene.add(dl);`,
+    ``,
+    `const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000);`,
+    `camera.position.set(3, 3, 5);`,
+    `window.addEventListener('resize', () => {`,
+    `  camera.aspect = window.innerWidth / window.innerHeight;`,
+    `  camera.updateProjectionMatrix();`,
+    `  renderer.setSize(window.innerWidth, window.innerHeight);`,
+    `});`,
+    ``,
+    `new GLTFLoader().load('./${o.name}', gltf => {`,
+    `  const model = gltf.scene;`,
+    `  const box = new THREE.Box3().setFromObject(model);`,
+    `  const sz  = box.getSize(new THREE.Vector3());`,
+    `  model.scale.setScalar(3 / Math.max(sz.x, sz.y, sz.z, 0.001));`,
+    `  box.setFromObject(model);`,
+    `  model.position.sub(box.getCenter(new THREE.Vector3()));`,
+    `  model.position.y += box.getSize(new THREE.Vector3()).y / 2;`,
+    `  scene.add(model);`,
+    `});`,
+    ``,
+    `(function loop() { requestAnimationFrame(loop); renderer.render(scene, camera); })();`,
+  ].join('\n');
+  codes.info = `ARCHIVO: ${o.name}\nTIPO: Binary GLTF (GLB)\n\nUSAR STANDALONE:\n→ Coloca '${o.name}' junto al script JS\n→ npm install three\n→ El código incluye renderer + cámara + loop\n\nUSAR EN PROYECTO EXISTENTE:\n→ Adapta la función loadGLTF al contexto de tu escena\n→ O importa el .glb en Blender / Unity / WebXR`;
+  genSceneJSON();
+  showCode(codes[codeTab]);
+}
+
+function showCode(c) {
+  $('cph').style.display='none';
+  const el=$('cd'); el.style.display='block'; el.innerHTML=hl(c);
+}
+function showCodePh() {
+  $('cph').style.display='flex'; $('cd').style.display='none';
+  codes.js=codes.json=codes.info='';
+}
+window.switchTab = tab => {
+  codeTab=tab;
+  ['Js','Json','Info'].forEach(t => $('tab'+t).classList.toggle('on', 'tab'+t === 'tab'+tab[0].toUpperCase()+tab.slice(1)));
+  if (codes[tab]) showCode(codes[tab]);
+};
+$('btnCopy').onclick = () => {
+  if (!codes[codeTab]) { toast('Sin código','err'); return; }
+  navigator.clipboard.writeText(codes[codeTab]).then(()=>toast('Copiado','ok')).catch(()=>toast('Error al copiar','err'));
+};
+
+// ── Export ────────────────────────────────────────────────────────────────────
+const expN = ext => (($('expName').value.trim() || 'export').replace(/\.[^.]+$/,'')) + ext;
+$('btnExGlb').onclick = () => {
+  if (!objs.length) { toast('Sin objetos','err'); return; }
+  showLoad(true,'Exportando GLB...');
+  const eg = new THREE.Group(); objs.forEach(o=>eg.add(o.group.clone()));
+  new GLTFExporter().parse(eg, r => { dlBlob(new Blob([r],{type:'application/octet-stream'}),expN('.glb')); showLoad(false); toast('GLB exportado','ok'); }, err => { showLoad(false); toast('Error GLB: '+err.message,'err'); }, {binary:true});
+};
+$('btnExJs').onclick   = () => { if(!codes.js)   { toast('Sin código','err'); return; } dlBlob(new Blob([codes.js],{type:'text/javascript'}),expN('.js')); toast('JS exportado','ok'); };
+$('btnExJson').onclick = () => { if(!codes.json) { toast('Sin datos','err');  return; } dlBlob(new Blob([codes.json],{type:'application/json'}),expN('.json'));   toast('JSON exportado','ok'); };
+
+// ── URL loader ────────────────────────────────────────────────────────────────
+$('btnLoadUrl').onclick = () => loadGLBFromURL($('urlGlb').value);
+$('urlGlb').addEventListener('keydown', e => { if (e.key === 'Enter') loadGLBFromURL($('urlGlb').value); });
+
+// ── Image → SVG ───────────────────────────────────────────────────────────────
+let imgTracerSrc = null;
+
+const MAX_IMG_BYTES = 50 * 1024 * 1024; // 50 MB
+
+$('fiImg').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  e.target.value = '';
+
+  if (!f.type.startsWith('image/')) {
+    toast('Archivo no reconocido como imagen', 'err'); return;
+  }
+  if (f.size > MAX_IMG_BYTES) {
+    toast('Imagen demasiado grande (máx 20 MB)', 'err'); return;
+  }
+
+  const reader = new FileReader();
+  reader.onerror = () => toast('No se pudo leer: ' + f.name, 'err');
+  reader.onload = ev => {
+    const img = new Image();
+    img.onerror = () => toast('No se pudo cargar: ' + f.name, 'err');
+    img.onload = () => {
+      const sw = img.naturalWidth, sh = img.naturalHeight;
+      if (!sw || !sh) { toast('Imagen vacía o corrupta', 'err'); return; }
+
+      // Preview canvas: max 280×110 px
+      const ps = Math.min(1, 280 / sw, 110 / sh);
+      const pw = Math.max(1, Math.round(sw * ps));
+      const ph = Math.max(1, Math.round(sh * ps));
+      const cv = $('imgPrev');
+      cv.width = pw; cv.height = ph;
+      cv.getContext('2d').drawImage(img, 0, 0, pw, ph);
+      cv.style.display = 'block';
+
+      // Canvas de traceado: max 1200 px por dimensión
+      const ts = Math.min(1, 1200 / Math.max(sw, sh));
+      const traceC = document.createElement('canvas');
+      traceC.width  = Math.max(1, Math.round(sw * ts));
+      traceC.height = Math.max(1, Math.round(sh * ts));
+      traceC.getContext('2d').drawImage(img, 0, 0, traceC.width, traceC.height);
+      imgTracerSrc = traceC;
+
+      $('imgInfo').textContent = `${f.name}  ·  ${sw}×${sh}  ·  ${Math.round(f.size/1024)} KB`;
+      $('imgInfo').style.display = 'block';
+      $('btnImgConvert').disabled = false;
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(f);
+});
+
+['dragenter','dragover'].forEach(ev => $('dzImg').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzImg').classList.add('over');
+}));
+['dragleave','drop'].forEach(ev => $('dzImg').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzImg').classList.remove('over');
+}));
+$('dzImg').addEventListener('drop', e => {
+  const f = e.dataTransfer.files[0]; if (!f) return;
+  const dt = new DataTransfer(); dt.items.add(f);
+  $('fiImg').files = dt.files;
+  $('fiImg').dispatchEvent(new Event('change'));
+});
+
+$('btnImgConvert').onclick = () => {
+  if (!imgTracerSrc) return;
+  if (!window.ImageTracer) { toast('ImageTracer no disponible','err'); return; }
+  showLoad(true, 'Vectorizando...');
+  setTimeout(() => {
+    try {
+      const opts = {
+        numberofcolors: parseInt($('imgCols').value),
+        blurradius: parseInt($('imgBlur').value),
+        colorsampling: $('imgGray').checked ? 0 : 2
+      };
+      const svgStr = window.ImageTracer.imagedataToSVG(
+        imgTracerSrc.getContext('2d').getImageData(0, 0, imgTracerSrc.width, imgTracerSrc.height),
+        opts
+      );
+      loadSVG(svgStr, 'traced_image.svg');
+      $('btnImgDownSvg').style.display = 'block';
+      $('btnImgDownSvg').onclick = () => dlBlob(new Blob([svgStr],{type:'image/svg+xml'}), expN('.svg'));
+      showLoad(false);
+    } catch(e) { showLoad(false); toast('Error: '+e.message,'err'); }
+  }, 50);
+};
+
+// ── BUILD tool ────────────────────────────────────────────────────────────────
+
+let refImgVisible = false;
+let currentBgHex = '#05050c';
+
+function setRefImage(dataUrl) {
+  const img = $('refImg');
+  img.src = dataUrl;
+  img.style.display = 'block';
+  img.style.opacity = ($('rngRefOpacity').value / 100).toFixed(2);
+  refImgVisible = true;
+  scene.background = null;
+  $('btnRefToggle').disabled = false;
+  toast('Imagen de referencia cargada', 'ok');
+}
+
+function setRefOpacity(val) {
+  const img = $('refImg');
+  if (img.style.display !== 'none') img.style.opacity = (val / 100).toFixed(2);
+}
+
+$('btnRefToggle').onclick = () => {
+  const img = $('refImg');
+  refImgVisible = !refImgVisible;
+  img.style.display = refImgVisible ? 'block' : 'none';
+  scene.background = refImgVisible ? null : new THREE.Color(currentBgHex);
+};
+
+$('fiRefImg').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const reader = new FileReader();
+  reader.onload = ev => setRefImage(ev.target.result);
+  reader.readAsDataURL(f);
+});
+
+['dragenter','dragover'].forEach(ev => $('dzRef').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzRef').classList.add('over');
+}));
+['dragleave','drop'].forEach(ev => $('dzRef').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzRef').classList.remove('over');
+}));
+$('dzRef').addEventListener('drop', e => {
+  const f = e.dataTransfer.files[0]; if (!f) return;
+  const dt = new DataTransfer(); dt.items.add(f);
+  $('fiRefImg').files = dt.files;
+  $('fiRefImg').dispatchEvent(new Event('change'));
+});
+
+function setBuildView(type) {
+  if (type === 'front') {
+    camera.position.set(0, 2, 8);
+    controls.target.set(0, 2, 0);
+  } else if (type === 'side') {
+    camera.position.set(8, 2, 0);
+    controls.target.set(0, 2, 0);
+  } else if (type === 'top') {
+    camera.position.set(0, 12, 0.001);
+    controls.target.set(0, 0, 0);
+  } else if (type === 'iso') {
+    camera.position.set(5, 5, 5);
+    controls.target.set(0, 2, 0);
+  }
+  camera.lookAt(controls.target);
+  controls.update();
+}
+window.setBuildView = setBuildView;
+
+function createGabledRoofGeometry(w, h, d) {
+  const shape = new THREE.Shape();
+  shape.moveTo(-w / 2, 0);
+  shape.lineTo(w / 2, 0);
+  shape.lineTo(0, h);
+  shape.closePath();
+  const geom = new THREE.ExtrudeGeometry(shape, { depth: d, bevelEnabled: false });
+  geom.rotateX(-Math.PI / 2);
+  geom.translate(0, 0, -d / 2);
+  return geom;
+}
+
+function createHippedRoofGeometry(w, h, d) {
+  const geom = new THREE.BufferGeometry();
+  // Base corners + ridge line
+  const v = [
+    -w/2, 0, -d/2,   // 0
+     w/2, 0, -d/2,   // 1
+     w/2, 0,  d/2,   // 2
+    -w/2, 0,  d/2,   // 3
+     0,   h, -d*0.3, // 4
+     0,   h,  d*0.3  // 5
+  ];
+  const verts = new Float32Array(v);
+  // Triangles: hip-front, hip-back, left slope (quad→2tri), right slope (quad→2tri)
+  const idx = [
+    0,4,1,           // hip front
+    2,5,3,           // hip back
+    0,3,5, 0,5,4,    // left slope
+    1,4,5, 1,5,2     // right slope
+  ];
+  geom.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+  geom.setIndex(idx);
+  geom.computeVertexNormals();
+  return geom;
+}
+
+function addBuildingElem(type) {
+  const w = parseFloat($('bldW').value) || 2;
+  const h = parseFloat($('bldH').value) || 3;
+  const d = parseFloat($('bldD').value) || 1;
+  const col = $('bldCol').value;
+  let geom;
+  let name;
+  if (type === 'wall') {
+    geom = new THREE.BoxGeometry(w, h, d);
+    name = 'wall';
+  } else if (type === 'floor') {
+    geom = new THREE.BoxGeometry(w, 0.05, d);
+    name = 'floor';
+  } else if (type === 'roof_flat') {
+    geom = new THREE.BoxGeometry(w, 0.1, d);
+    name = 'roof_flat';
+  } else if (type === 'roof_gabled') {
+    geom = createGabledRoofGeometry(w, h, d);
+    name = 'roof_gabled';
+  } else if (type === 'roof_hipped') {
+    geom = createHippedRoofGeometry(w, h, d);
+    name = 'roof_hipped';
+  } else return;
+
+  const mat   = new THREE.MeshStandardMaterial({ color: new THREE.Color(col), roughness: 0.6, metalness: 0.05 });
+  const mesh  = new THREE.Mesh(geom, mat);
+  const group = new THREE.Group();
+  group.add(mesh);
+  scene.add(group);
+  const uname = name + '_' + (objs.length + 1);
+  const o = { id: Date.now(), name: uname, type: 'prim', group };
+  objs.push(o);
+  selectObj(o); updateList(); genGLBCode(o); fitCam(group);
+  setTool('select');
+  toast(uname + ' añadido', 'ok');
+}
+window.addBuildingElem = addBuildingElem;
+
+// ── Code panel ─────────────────────────────────────────────────────────────────
+
+// State: original HTML source when code was loaded from an .html file
+let _htmlSrc = null; // { headCss, bodyHtml, filename }
+
+// Extract CSS from <head> style blocks
+function extractHeadCss(html) {
+  const headM = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
+  if (!headM) return '';
+  const styles = [];
+  const re = /<style[^>]*>([\s\S]*?)<\/style>/gi;
+  let m;
+  while ((m = re.exec(headM[1])) !== null) styles.push(m[1].trim());
+  return styles.join('\n');
+}
+
+// Extract inline <script> content from an HTML string (skips scripts with src=)
+function extractJsFromHtml(html) {
+  const scripts = [];
+  const re = /<script(?![^>]*\bsrc\s*=)[^>]*>([\s\S]*?)<\/script>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) { scripts.push(m[1].trim()); }
+  return scripts.filter(s => s.length > 0).join('\n\n');
+}
+
+// Extract body HTML (without script tags) so DOM elements exist in the iframe
+function extractBodyHtml(html) {
+  const m = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  const body = m ? m[1] : '';
+  return body.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '').trim();
+}
+
+// Strip imports/declarations that conflict with the sandbox wrapper
+function preprocessUserCode(code) {
+  // Remove Three.js import lines (import ... from '...three...' or 'three')
+  code = code.replace(/^[ \t]*import\s[^\n]*from\s*['"][^'"]*three[^'"]*['"]\s*;?[ \t]*$/gim, '');
+  code = code.replace(/^[ \t]*import\s[^\n]*from\s*['"]three['"]\s*;?[ \t]*$/gim, '');
+  // Remove Controls addon imports (OrbitControls, TransformControls, etc.)
+  code = code.replace(/^[ \t]*import\s[^\n]*Controls[^\n]*from\s*['"]\S+['"]\s*;?[ \t]*$/gim, '');
+  // Remove re-declarations of `scene` (already declared in sandbox wrapper)
+  code = code.replace(/^[ \t]*(const|let|var)\s+scene\s*=\s*new\s+THREE\.Scene\s*\([^)]*\)\s*;?[ \t]*$/gim, '');
+  // Remove renderer creation (dummy renderer is provided by sandbox wrapper)
+  code = code.replace(/^[ \t]*(const|let|var)\s+renderer\s*=\s*new\s+THREE\.[^\n]+$/gim, '');
+  // Remove requestAnimationFrame calls (would prevent GLTFExporter from running)
+  code = code.replace(/^[ \t]*requestAnimationFrame\s*\([^)]*\)\s*;?[ \t]*$/gim, '');
+  // Remove Controls instantiation and method calls (not available in sandbox)
+  code = code.replace(/^[ \t]*(const|let|var)\s+\w*[Cc]ontrols\w*\s*=\s*new\s+\w+Controls[^\n]*$/gim, '');
+  code = code.replace(/^[ \t]*\w*[Cc]ontrols\w*\.[^\n]+$/gim, '');
+  return code;
+}
+
+$('fiCode').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  e.target.value = '';
+  const r = new FileReader();
+  r.onload = ev => {
+    let text = ev.target.result;
+    if (f.name.endsWith('.html') || f.name.endsWith('.htm')) {
+      text = extractJsFromHtml(text);
+      if (!text) { toast('No se encontraron scripts en el HTML', 'err'); return; }
+    }
+    $('codeInput').value = text;
+  };
+  r.readAsText(f);
+});
+
+['dragenter','dragover'].forEach(ev => $('dzCode').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzCode').classList.add('over');
+}));
+['dragleave','drop'].forEach(ev => $('dzCode').addEventListener(ev, e => {
+  e.preventDefault(); e.stopPropagation(); $('dzCode').classList.remove('over');
+}));
+$('dzCode').addEventListener('drop', e => {
+  const f = e.dataTransfer.files[0]; if (!f) return;
+  const dt = new DataTransfer(); dt.items.add(f);
+  $('fiCode').files = dt.files;
+  $('fiCode').dispatchEvent(new Event('change'));
+});
+
+window.evalSceneCode = function() {
+  let rawCode = $('codeInput').value.trim();
+  if (!rawCode) { toast('Sin código', 'err'); return; }
+  $('codeErr').style.display = 'none';
+  $('codeErr').textContent = '';
+
+  // If the pasted content looks like HTML, extract inline scripts + body DOM
+  let bodyHtml = '';
+  let isHtmlSource = false;
+  const fullRaw = rawCode; // keep full text for _htmlSrc
+  if (/^\s*<(!DOCTYPE|html)/i.test(rawCode) || rawCode.includes('<body') || rawCode.includes('<head')) {
+    isHtmlSource = true;
+    bodyHtml = extractBodyHtml(rawCode);
+    rawCode = extractJsFromHtml(rawCode);
+    if (!rawCode) { toast('No se encontraron scripts en el HTML', 'err'); return; }
+  }
+
+  const code = preprocessUserCode(rawCode);
+  const base = window.location.origin;
+  const _so = '<'+'script type="module">';
+  const _sc = '<'+'/script>';
+  const srcdoc = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>'
+    + bodyHtml   // inject non-script body HTML so DOM elements exist
+    + _so
+    + `import * as THREE from '${base}/static/vendor/three/three.module.js';\n`
+    + `import { GLTFExporter } from '${base}/static/vendor/three/GLTFExporter.js?v=2';\n`
+    + 'try {\n'
+    + '  const scene = new THREE.Scene();\n'
+    + '  const renderer = { render:()=>{}, setSize:()=>{}, setPixelRatio:()=>{},\n'
+    + '    domElement: document.createElement("canvas"),\n'
+    + '    shadowMap:{enabled:false,type:1}, outputColorSpace:"", toneMapping:0, toneMappingExposure:1 };\n'
+    + code + '\n'
+    + '  new GLTFExporter().parse(scene, buf => {\n'
+    + "    parent.postMessage({type:'sceneGlb', buffer: buf}, '*');\n"
+    + '  }, err => {\n'
+    + "    parent.postMessage({type:'sceneErr', msg: String(err)}, '*');\n"
+    + '  }, {binary:true});\n'
+    + '} catch(e) {\n'
+    + "  parent.postMessage({type:'sceneErr', msg: e.message + '\\n' + e.stack}, '*');\n"
+    + '}\n'
+    + _sc + '</body></html>';
+
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  let done = false;
+  const cleanup = () => { done = true; try { iframe.remove(); } catch(_) {} };
+  const timeout = setTimeout(() => {
+    if (!done) { cleanup(); $('codeErr').textContent = 'Timeout (10s) — el código no completó.'; $('codeErr').style.display = 'block'; }
+  }, 10000);
+
+  window.addEventListener('message', function handler(e) {
+    if (done) return;
+    if (e.data?.type === 'sceneGlb') {
+      window.removeEventListener('message', handler);
+      clearTimeout(timeout); cleanup();
+      loadGLB(e.data.buffer, 'codigo_escena.glb');
+      // Save HTML source info so we can reconstruct the full HTML on download
+      if (isHtmlSource) {
+        _htmlSrc = { headCss: extractHeadCss(fullRaw), bodyHtml };
+        $('btnDlHtml').style.display = '';
+      } else {
+        _htmlSrc = null;
+        $('btnDlHtml').style.display = 'none';
+      }
+      toast('Código ejecutado', 'ok');
+    } else if (e.data?.type === 'sceneErr') {
+      window.removeEventListener('message', handler);
+      clearTimeout(timeout); cleanup();
+      $('codeErr').textContent = e.data.msg;
+      $('codeErr').style.display = 'block';
+      toast('Error en código', 'err');
+    }
+  });
+
+  iframe.srcdoc = srcdoc;
+};
+
+// ── Download updated HTML ───────────────────────────────────────────────────────
+window.downloadUpdatedHtml = function() {
+  if (!_htmlSrc) { toast('No hay fuente HTML guardada', 'err'); return; }
+  if (!objs.length) { toast('La escena está vacía', 'err'); return; }
+
+  showLoad(true, 'Generando HTML...');
+  const eg = new THREE.Group();
+  objs.forEach(o => eg.add(o.group.clone()));
+
+  new GLTFExporter().parse(eg, glbBuffer => {
+    // Encode GLB as base64 data URL
+    const bytes = new Uint8Array(glbBuffer);
+    let bin = '';
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+    const b64 = btoa(bin);
+    const dataUrl = 'data:model/gltf-binary;base64,' + b64;
+
+    const css = _htmlSrc.headCss;
+    const body = _htmlSrc.bodyHtml;
+
+    const html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escena 3D</title>
+  <style>
+${css}
+  </style>
+</head>
+<body>
+${body}
+<script type="module">
+import * as THREE from 'https://esm.sh/three@0.172.0';
+import { GLTFLoader } from 'https://esm.sh/three@0.172.0/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'https://esm.sh/three@0.172.0/examples/jsm/controls/OrbitControls.js';
+
+const _glb = '${dataUrl}';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+document.body.style.margin = '0';
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x111118);
+
+const ambLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambLight);
+const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
+dirLight.position.set(5, 10, 7);
+scene.add(dirLight);
+
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 1000);
+camera.position.set(3, 3, 5);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+new GLTFLoader().load(_glb, gltf => {
+  const model = gltf.scene;
+  const box = new THREE.Box3().setFromObject(model);
+  const center = box.getCenter(new THREE.Vector3());
+  model.position.sub(center);
+  scene.add(model);
+  controls.target.copy(new THREE.Vector3(0, 0, 0));
+  controls.update();
+});
+
+(function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+})();
+<` + `/script>
+</body>
+</html>`;
+
+    dlBlob(new Blob([html], { type: 'text/html' }), 'escena_actualizada.html');
+    showLoad(false);
+    toast('HTML descargado', 'ok');
+  }, err => {
+    showLoad(false);
+    toast('Error exportando: ' + err.message, 'err');
+  }, { binary: true });
+};
+
+// Also call refreshCode when deleteNode runs
+const _origDeleteNode = window.deleteNode;
+window.deleteNode = function(uuid) {
+  _origDeleteNode(uuid);
+  refreshCode();
+};
+</script>
+</body>
+</html>

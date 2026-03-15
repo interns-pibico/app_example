@@ -1,0 +1,13 @@
+{
+  "name": "Mercado de Gijón",
+  "type": "module_import",
+  "concejoPolygon": "c013",
+  "src": "/static/js/gijon/mercado-market.js",
+  "exportName": "makeMercado",
+  "offsetX": 0.23,
+  "offsetZ": -0.05,
+  "heightOffset": 0.0,
+  "flatRotX": -1.5708,
+  "hasUpdate": false,
+  "enabled": true
+}

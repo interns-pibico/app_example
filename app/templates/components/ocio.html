@@ -1,0 +1,19 @@
+{% block content %}
+<div id="modal-ocio" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Cultura y Ocio en Gijón</h2>
+        <div class="ocio-filters">
+            <button onclick="abrirModalOcio('monumentos')">🗿 Monumentos</button>
+            <button onclick="abrirModalOcio('museos')">🖼️ Museos</button>
+            <button onclick="abrirModalOcio('teatros')">🎭 Teatros</button>
+        </div>
+        <div id="lista-ocio">
+
+        </div>
+        <div class="modal-footer">
+            <button id="btn-ocio-paginacion" class="btn-principal">Ver más</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

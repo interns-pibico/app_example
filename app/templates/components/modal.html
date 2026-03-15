@@ -1,0 +1,28 @@
+<div id="modal-general" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close-button" onclick="cerrarModal()">&times;</span>
+            <h2 id="modal-titulo"></h2>
+            <p id="modal-municipio-tag"></p>
+        </div>
+
+        <div id="ocio-filters" class="ocio-filters" style="display: none;">
+            <button class="filter-btn active" data-tipo="todos" onclick="activarFiltroOcio('todos')">Todos</button>
+            <button class="filter-btn" data-tipo="monumentos" onclick="activarFiltroOcio('monumentos')">🏛️ Monumentos</button>
+            <button class="filter-btn" data-tipo="museos" onclick="activarFiltroOcio('museos')">🖼️ Museos</button>
+            <button class="filter-btn" data-tipo="teatros" onclick="activarFiltroOcio('teatros')">🎭 Teatros</button>
+            <button class="filter-btn" data-tipo="cines" onclick="activarFiltroOcio('cines')">🎬 Cines</button>
+        </div>
+
+        <div id="contenedor-items" class="grid-container"></div>
+
+        <div class="modal-footer">
+            <button id="btn-cargar-mas" class="btn-ver-mas" style="display: none;">
+                Ver más resultados
+            </button>
+            <button id="btn-tripadvisor" class="btn-trip" style="display: none;">
+                Ver en TripAdvisor
+            </button>
+        </div>
+    </div>
+</div>

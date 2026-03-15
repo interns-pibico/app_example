@@ -1,0 +1,4737 @@
+{
+  "name": "La Laboral",
+  "type": "composite",
+  "color": "0xc8a050",
+  "concejoPolygon": "c013",
+  "offsetX": -0.25,
+  "offsetZ": -0.05,
+  "rotateY": "Math.PI",
+  "heightOffset": 0.0,
+  "parts": [
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.072,
+        "height": 0.0006,
+        "depth": 0.076
+      },
+      "position": [
+        0.0,
+        0.0003,
+        0.0
+      ],
+      "color": "0x706858"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.068,
+        "height": 0.0006,
+        "depth": 0.044
+      },
+      "position": [
+        0.0,
+        0.0003,
+        -0.082
+      ],
+      "color": "0x706858"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.104,
+        "height": 0.02,
+        "depth": 0.018
+      },
+      "position": [
+        0.0,
+        0.01,
+        0.066
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.106,
+        "height": 0.003,
+        "depth": 0.02
+      },
+      "position": [
+        0.0,
+        0.0208,
+        0.066
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.022,
+        "height": 0.024,
+        "depth": 0.02
+      },
+      "position": [
+        -0.062,
+        0.012,
+        0.066
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.022,
+        "height": 0.024,
+        "depth": 0.02
+      },
+      "position": [
+        0.062,
+        0.012,
+        0.066
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.016,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.062,
+        0.025,
+        0.066
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.016,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.062,
+        0.025,
+        0.066
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.028,
+        "depth": 0.012
+      },
+      "position": [
+        0.0,
+        0.014,
+        0.074
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.021,
+        "height": 0.004,
+        "depth": 0.013
+      },
+      "position": [
+        0.0,
+        0.0284,
+        0.074
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "torus",
+      "params": {
+        "radius": 0.0048,
+        "tube": 0.0008,
+        "radialSegments": 8,
+        "tubularSegments": 18,
+        "arc": "Math.PI"
+      },
+      "position": [
+        0.0,
+        0.008,
+        0.0784
+      ],
+      "rotation": {
+        "x": 3.14159
+      },
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.008,
+        "height": 0.01,
+        "depth": 0.001
+      },
+      "position": [
+        0.0,
+        0.004,
+        0.0786
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.011,
+        "height": 0.007,
+        "radialSegments": 4
+      },
+      "position": [
+        0.0,
+        0.0324,
+        0.074
+      ],
+      "rotation": {
+        "y": 0.7854
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.018,
+        "height": 0.018,
+        "depth": 0.08
+      },
+      "position": [
+        -0.044,
+        0.009,
+        0.026
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.019,
+        "height": 0.0026,
+        "depth": 0.082
+      },
+      "position": [
+        -0.044,
+        0.0188,
+        0.026
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.018,
+        "height": 0.018,
+        "depth": 0.08
+      },
+      "position": [
+        0.044,
+        0.009,
+        0.026
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.019,
+        "height": 0.0026,
+        "depth": 0.082
+      },
+      "position": [
+        0.044,
+        0.0188,
+        0.026
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.02,
+        "depth": 0.02
+      },
+      "position": [
+        -0.044,
+        0.01,
+        0.066
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.021,
+        0.066
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.02,
+        "depth": 0.02
+      },
+      "position": [
+        -0.044,
+        0.01,
+        -0.014
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.021,
+        -0.014
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.02,
+        "depth": 0.02
+      },
+      "position": [
+        0.044,
+        0.01,
+        0.066
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.021,
+        0.066
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.02,
+        "depth": 0.02
+      },
+      "position": [
+        0.044,
+        0.01,
+        -0.014
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.021,
+        -0.014
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.021,
+        -0.004
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0234,
+        -0.004
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.021,
+        -0.004
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0234,
+        -0.004
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.021,
+        0.012
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0234,
+        0.012
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.021,
+        0.012
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0234,
+        0.012
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.021,
+        0.028
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0234,
+        0.028
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.021,
+        0.028
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0234,
+        0.028
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.021,
+        0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0234,
+        0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.021,
+        0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0234,
+        0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.104,
+        "height": 0.026,
+        "depth": 0.024
+      },
+      "position": [
+        0.0,
+        0.013,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.106,
+        "height": 0.0036,
+        "depth": 0.026
+      },
+      "position": [
+        0.0,
+        0.0264,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.048,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.048,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.036,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.036,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.024,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.024,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.012,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.012,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.0,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        0.0,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.012,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        0.012,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.024,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        0.024,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.036,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        0.036,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0008,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.048,
+        0.0286,
+        -0.044
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0006,
+        "height": 0.003,
+        "radialSegments": 4
+      },
+      "position": [
+        0.048,
+        0.0312,
+        -0.044
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.076,
+        "height": 0.016,
+        "depth": 0.01
+      },
+      "position": [
+        0.0,
+        0.008,
+        -0.032
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.078,
+        "height": 0.002,
+        "depth": 0.011
+      },
+      "position": [
+        0.0,
+        0.0164,
+        -0.032
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.034,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.024,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.014,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.004,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        0.006,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        0.016,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0011,
+        "radiusBottom": 0.0011,
+        "height": 0.014,
+        "radialSegments": 8
+      },
+      "position": [
+        0.026,
+        0.007,
+        -0.032
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.019,
+        "radiusBottom": 0.02,
+        "height": 0.028,
+        "radialSegments": 12
+      },
+      "position": [
+        -0.004,
+        0.014,
+        -0.036
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.017,
+        "radiusBottom": 0.019,
+        "height": 0.008,
+        "radialSegments": 12
+      },
+      "position": [
+        -0.004,
+        0.029,
+        -0.036
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.002,
+        "radiusBottom": 0.018,
+        "height": 0.009,
+        "radialSegments": 12
+      },
+      "position": [
+        -0.004,
+        0.0356,
+        -0.036
+      ],
+      "color": "0x333f4a"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0024,
+        "radiusBottom": 0.004,
+        "height": 0.006,
+        "radialSegments": 10
+      },
+      "position": [
+        -0.004,
+        0.041,
+        -0.036
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.0016,
+        "height": 0.004,
+        "radialSegments": 10
+      },
+      "position": [
+        -0.004,
+        0.0444,
+        -0.036
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.03,
+        "height": 0.024,
+        "depth": 0.01
+      },
+      "position": [
+        -0.004,
+        0.012,
+        -0.02
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0012,
+        "radiusBottom": 0.0012,
+        "height": 0.022,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.015,
+        0.011,
+        -0.015
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0012,
+        "radiusBottom": 0.0012,
+        "height": 0.022,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.008,
+        0.011,
+        -0.015
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0012,
+        "radiusBottom": 0.0012,
+        "height": 0.022,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.001,
+        0.011,
+        -0.015
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0012,
+        "radiusBottom": 0.0012,
+        "height": 0.022,
+        "radialSegments": 8
+      },
+      "position": [
+        0.006,
+        0.011,
+        -0.015
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.016,
+        "height": 0.008,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.004,
+        0.0264,
+        -0.02
+      ],
+      "rotation": {
+        "y": 0.7854
+      }
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.018,
+        "height": 0.02,
+        "depth": 0.056
+      },
+      "position": [
+        -0.044,
+        0.01,
+        -0.082
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.019,
+        "height": 0.0026,
+        "depth": 0.058
+      },
+      "position": [
+        -0.044,
+        0.0206,
+        -0.082
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.018,
+        "height": 0.02,
+        "depth": 0.056
+      },
+      "position": [
+        0.044,
+        0.01,
+        -0.082
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.019,
+        "height": 0.0026,
+        "depth": 0.058
+      },
+      "position": [
+        0.044,
+        0.0206,
+        -0.082
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.022,
+        "depth": 0.02
+      },
+      "position": [
+        -0.044,
+        0.011,
+        -0.054
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.022,
+        -0.054
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.022,
+        "depth": 0.02
+      },
+      "position": [
+        0.044,
+        0.011,
+        -0.054
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.022,
+        -0.054
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.022,
+        "depth": 0.02
+      },
+      "position": [
+        -0.044,
+        0.011,
+        -0.11
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.022,
+        -0.11
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.022,
+        "depth": 0.02
+      },
+      "position": [
+        0.044,
+        0.011,
+        -0.11
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.015,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.022,
+        -0.11
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.104,
+        "height": 0.02,
+        "depth": 0.02
+      },
+      "position": [
+        0.0,
+        0.01,
+        -0.11
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.106,
+        "height": 0.003,
+        "depth": 0.022
+      },
+      "position": [
+        0.0,
+        0.0206,
+        -0.11
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.023,
+        -0.064
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0254,
+        -0.064
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.023,
+        -0.064
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0254,
+        -0.064
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.023,
+        -0.08
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0254,
+        -0.08
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.023,
+        -0.08
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0254,
+        -0.08
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.044,
+        0.023,
+        -0.096
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.044,
+        0.0254,
+        -0.096
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0005,
+        "radiusBottom": 0.0007,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.044,
+        0.023,
+        -0.096
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.00056,
+        "height": 0.0028,
+        "radialSegments": 4
+      },
+      "position": [
+        0.044,
+        0.0254,
+        -0.096
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.016,
+        "height": 0.012,
+        "depth": 0.016
+      },
+      "position": [
+        -0.02,
+        0.006,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.014,
+        "height": 0.016,
+        "depth": 0.014
+      },
+      "position": [
+        -0.02,
+        0.022,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.012,
+        "height": 0.014,
+        "depth": 0.012
+      },
+      "position": [
+        -0.02,
+        0.037,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.01,
+        "height": 0.012,
+        "depth": 0.01
+      },
+      "position": [
+        -0.02,
+        0.051,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.002,
+        "radiusBottom": 0.002,
+        "height": 0.0011,
+        "radialSegments": 16
+      },
+      "position": [
+        -0.02,
+        0.051,
+        -0.0669
+      ],
+      "rotation": {
+        "x": 1.5708
+      },
+      "color": "0xe8e0d0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.002,
+        "radiusBottom": 0.002,
+        "height": 0.0011,
+        "radialSegments": 16
+      },
+      "position": [
+        -0.02,
+        0.051,
+        -0.0771
+      ],
+      "rotation": {
+        "x": 1.5708
+      },
+      "color": "0xe8e0d0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.002,
+        "radiusBottom": 0.002,
+        "height": 0.0011,
+        "radialSegments": 16
+      },
+      "position": [
+        -0.0149,
+        0.051,
+        -0.072
+      ],
+      "rotation": {
+        "z": 1.5708
+      },
+      "color": "0xe8e0d0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.002,
+        "radiusBottom": 0.002,
+        "height": 0.0011,
+        "radialSegments": 16
+      },
+      "position": [
+        -0.0251,
+        0.051,
+        -0.072
+      ],
+      "rotation": {
+        "z": 1.5708
+      },
+      "color": "0xe8e0d0"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.008,
+        "height": 0.011,
+        "depth": 0.008
+      },
+      "position": [
+        -0.02,
+        0.063,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "torus",
+      "params": {
+        "radius": 0.0018,
+        "tube": 0.00036,
+        "radialSegments": 6,
+        "tubularSegments": 12,
+        "arc": "Math.PI"
+      },
+      "position": [
+        -0.02,
+        0.066,
+        -0.0678
+      ],
+      "rotation": {
+        "x": 3.14159,
+        "y": 0.0
+      },
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "torus",
+      "params": {
+        "radius": 0.0018,
+        "tube": 0.00036,
+        "radialSegments": 6,
+        "tubularSegments": 12,
+        "arc": "Math.PI"
+      },
+      "position": [
+        -0.0158,
+        0.066,
+        -0.072
+      ],
+      "rotation": {
+        "x": 3.14159,
+        "y": 1.5708
+      },
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "torus",
+      "params": {
+        "radius": 0.0018,
+        "tube": 0.00036,
+        "radialSegments": 6,
+        "tubularSegments": 12,
+        "arc": "Math.PI"
+      },
+      "position": [
+        -0.02,
+        0.066,
+        -0.0762
+      ],
+      "rotation": {
+        "x": 3.14159,
+        "y": 3.14159
+      },
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "torus",
+      "params": {
+        "radius": 0.0018,
+        "tube": 0.00036,
+        "radialSegments": 6,
+        "tubularSegments": 12,
+        "arc": "Math.PI"
+      },
+      "position": [
+        -0.0242,
+        0.066,
+        -0.072
+      ],
+      "rotation": {
+        "x": 3.14159,
+        "y": 4.71239
+      },
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0012,
+        "radiusBottom": 0.005,
+        "height": 0.005,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.02,
+        0.0706,
+        -0.072
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0003,
+        "radiusBottom": 0.0012,
+        "height": 0.01,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.02,
+        0.077,
+        -0.072
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0001,
+        "radiusBottom": 0.0003,
+        "height": 0.006,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.02,
+        0.083,
+        -0.072
+      ],
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.02,
+        "height": 0.014,
+        "depth": 0.016
+      },
+      "position": [
+        0.0,
+        0.007,
+        -0.124
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.021,
+        "height": 0.002,
+        "depth": 0.017
+      },
+      "position": [
+        0.0,
+        0.0144,
+        -0.124
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.022,
+        "radiusBottom": 0.022,
+        "height": 0.022,
+        "radialSegments": 24
+      },
+      "position": [
+        0.0,
+        0.012,
+        -0.144
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0224,
+        "radiusBottom": 0.0224,
+        "height": 0.006,
+        "radialSegments": 24
+      },
+      "position": [
+        0.0,
+        0.019,
+        -0.144
+      ],
+      "color": "0xb89040"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0016,
+        "radiusBottom": 0.024,
+        "height": 0.006,
+        "radialSegments": 24
+      },
+      "position": [
+        0.0,
+        0.025,
+        -0.144
+      ],
+      "color": "0x333f4a"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.026,
+        0.009,
+        -0.144
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.024727,
+        0.009,
+        -0.135966
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.021034,
+        0.009,
+        -0.128718
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.015282,
+        0.009,
+        -0.122966
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.008034,
+        0.009,
+        -0.119273
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.0,
+        0.009,
+        -0.118
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.008034,
+        0.009,
+        -0.119273
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.015282,
+        0.009,
+        -0.122966
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.021034,
+        0.009,
+        -0.128718
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.024727,
+        0.009,
+        -0.135966
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.026,
+        0.009,
+        -0.144
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.024727,
+        0.009,
+        -0.152034
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.021034,
+        0.009,
+        -0.159282
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.015282,
+        0.009,
+        -0.165034
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.008034,
+        0.009,
+        -0.168727
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        -0.0,
+        0.009,
+        -0.17
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.008034,
+        0.009,
+        -0.168727
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.015282,
+        0.009,
+        -0.165034
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.021034,
+        0.009,
+        -0.159282
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0009,
+        "radiusBottom": 0.0009,
+        "height": 0.018,
+        "radialSegments": 8
+      },
+      "position": [
+        0.024727,
+        0.009,
+        -0.152034
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.027,
+        "radiusBottom": 0.027,
+        "height": 0.0016,
+        "radialSegments": 24
+      },
+      "position": [
+        0.0,
+        0.0184,
+        -0.144
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.004,
+        "radiusBottom": 0.006,
+        "height": 0.005,
+        "radialSegments": 12
+      },
+      "position": [
+        0.0,
+        0.0284,
+        -0.144
+      ],
+      "color": "0xd5cdc0"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.004,
+        "height": 0.004,
+        "radialSegments": 12
+      },
+      "position": [
+        0.0,
+        0.0322,
+        -0.144
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.028,
+        "height": 0.018,
+        "depth": 0.11
+      },
+      "position": [
+        -0.09,
+        0.009,
+        -0.012
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.03,
+        "height": 0.0026,
+        "depth": 0.112
+      },
+      "position": [
+        -0.09,
+        0.0188,
+        -0.012
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.022,
+        "depth": 0.024
+      },
+      "position": [
+        -0.09,
+        0.011,
+        0.042
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.024,
+        "height": 0.022,
+        "depth": 0.024
+      },
+      "position": [
+        -0.09,
+        0.011,
+        -0.064
+      ]
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.018,
+        "height": 0.011,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.09,
+        0.0226,
+        0.042
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.018,
+        "height": 0.011,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.09,
+        0.0226,
+        -0.064
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        0.012
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        0.012
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        0.002
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        0.002
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        -0.008
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        -0.008
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        -0.018
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        -0.018
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        -0.028
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        -0.028
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.004,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.011,
+        -0.038
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0006,
+        "height": 0.0032,
+        "depth": 0.0032
+      },
+      "position": [
+        -0.105,
+        0.0164,
+        -0.038
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.032,
+        "height": 0.018,
+        "depth": 0.032
+      },
+      "position": [
+        0.084,
+        0.009,
+        0.056
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.033,
+        "height": 0.0024,
+        "depth": 0.033
+      },
+      "position": [
+        0.084,
+        0.0186,
+        0.056
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.006,
+        "radiusBottom": 0.0066,
+        "height": 0.007,
+        "radialSegments": 12
+      },
+      "position": [
+        0.084,
+        0.0236,
+        0.056
+      ]
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0006,
+        "radiusBottom": 0.006,
+        "height": 0.004,
+        "radialSegments": 12
+      },
+      "position": [
+        0.084,
+        0.0282,
+        0.056
+      ],
+      "color": "0x4a7060"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.001,
+        "height": 0.004,
+        "radialSegments": 8
+      },
+      "position": [
+        0.084,
+        0.0312,
+        0.056
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.028,
+        "height": 0.016,
+        "depth": 0.028
+      },
+      "position": [
+        -0.084,
+        0.008,
+        0.072
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.029,
+        "height": 0.0024,
+        "depth": 0.029
+      },
+      "position": [
+        -0.084,
+        0.0166,
+        0.072
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.016,
+        "height": 0.009,
+        "radialSegments": 4
+      },
+      "position": [
+        -0.084,
+        0.019,
+        0.072
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.036,
+        "height": 0.018,
+        "depth": 0.036
+      },
+      "position": [
+        0.076,
+        0.009,
+        -0.098
+      ]
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.038,
+        "height": 0.0024,
+        "depth": 0.038
+      },
+      "position": [
+        0.076,
+        0.0186,
+        -0.098
+      ],
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "cone",
+      "params": {
+        "radius": 0.02,
+        "height": 0.01,
+        "radialSegments": 4
+      },
+      "position": [
+        0.076,
+        0.021,
+        -0.098
+      ],
+      "rotation": {
+        "y": 0.7854
+      },
+      "color": "0x4a5460"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.046,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.046,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.046,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.037,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.037,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.037,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.028,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.028,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.028,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.019,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.019,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        -0.019,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.017,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.017,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        0.017,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.026,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.026,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        0.026,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.035,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.035,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        0.035,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.044,
+        0.014,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.005,
+        "depth": 0.0007
+      },
+      "position": [
+        0.044,
+        0.0076,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.004,
+        "height": 0.0036,
+        "depth": 0.0007
+      },
+      "position": [
+        0.044,
+        0.02,
+        0.0754
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        -0.004
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        -0.004
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        -0.004
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        -0.004
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.005
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.005
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.005
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.005
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.014
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.014
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.014
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.014
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.023
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.023
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.023
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.023
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.032
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.032
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.032
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.032
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.041
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.041
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.041
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.041
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.01,
+        0.05
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        -0.053,
+        0.016,
+        0.05
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.004,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.01,
+        0.05
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "box",
+      "params": {
+        "width": 0.0007,
+        "height": 0.0036,
+        "depth": 0.004
+      },
+      "position": [
+        0.053,
+        0.016,
+        0.05
+      ],
+      "color": "0x1a2028"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0002,
+        -0.008
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0034,
+        -0.008
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0002,
+        -0.008
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0034,
+        -0.008
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0002,
+        0.006
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0034,
+        0.006
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0002,
+        0.006
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0034,
+        0.006
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0002,
+        0.02
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0034,
+        0.02
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0002,
+        0.02
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0034,
+        0.02
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0002,
+        0.034
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0034,
+        0.034
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0002,
+        0.034
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0034,
+        0.034
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0002,
+        0.048
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0034,
+        0.048
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0036,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0002,
+        0.048
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0063,
+        "height": 0.0072,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0034,
+        0.048
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.056,
+        -0.0005,
+        -0.056
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.056,
+        0.0025,
+        -0.056
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.056,
+        -0.0005,
+        -0.056
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.056,
+        0.0025,
+        -0.056
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.056,
+        -0.0005,
+        -0.07
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.056,
+        0.0025,
+        -0.07
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.056,
+        -0.0005,
+        -0.07
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.056,
+        0.0025,
+        -0.07
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.056,
+        -0.0005,
+        -0.084
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.056,
+        0.0025,
+        -0.084
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.056,
+        -0.0005,
+        -0.084
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.056,
+        0.0025,
+        -0.084
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.056,
+        -0.0005,
+        -0.098
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.056,
+        0.0025,
+        -0.098
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.056,
+        -0.0005,
+        -0.098
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.056,
+        0.0025,
+        -0.098
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.036,
+        -0.0005,
+        -0.144
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.036,
+        0.0025,
+        -0.144
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.029125,
+        -0.0005,
+        -0.12284
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.029125,
+        0.0025,
+        -0.12284
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.011125,
+        -0.0005,
+        -0.109762
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.011125,
+        0.0025,
+        -0.109762
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.011125,
+        -0.0005,
+        -0.109762
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.011125,
+        0.0025,
+        -0.109762
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.029125,
+        -0.0005,
+        -0.12284
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.029125,
+        0.0025,
+        -0.12284
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.036,
+        -0.0005,
+        -0.144
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.036,
+        0.0025,
+        -0.144
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.029125,
+        -0.0005,
+        -0.16516
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.029125,
+        0.0025,
+        -0.16516
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.011125,
+        -0.0005,
+        -0.178238
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.011125,
+        0.0025,
+        -0.178238
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.011125,
+        -0.0005,
+        -0.178238
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.011125,
+        0.0025,
+        -0.178238
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.029125,
+        -0.0005,
+        -0.16516
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.029125,
+        0.0025,
+        -0.16516
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.06,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.06,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.04,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.04,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.02,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.02,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.02,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.02,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.04,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.04,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.003,
+        "radialSegments": 6
+      },
+      "position": [
+        0.06,
+        -0.0005,
+        0.092
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.00525,
+        "height": 0.006,
+        "radialSegments": 7
+      },
+      "position": [
+        0.06,
+        0.0025,
+        0.092
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        0.002
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        0.002
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        -0.01
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        -0.01
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        -0.022
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        -0.022
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        -0.034
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        -0.034
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        -0.046
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        -0.046
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.1,
+        -0.0004,
+        -0.058
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.1,
+        0.0028,
+        -0.058
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        0.002
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        0.002
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        -0.01
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        -0.01
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        -0.022
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        -0.022
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        -0.034
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        -0.034
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        -0.046
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        -0.046
+      ],
+      "color": "0x1e3010"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.00044,
+        "radiusBottom": 0.00056,
+        "height": 0.0032,
+        "radialSegments": 6
+      },
+      "position": [
+        -0.096,
+        -0.0004,
+        -0.058
+      ],
+      "color": "0x3a2510"
+    },
+    {
+      "geometry": "cylinder",
+      "params": {
+        "radiusTop": 0.0,
+        "radiusBottom": 0.0056,
+        "height": 0.0064,
+        "radialSegments": 7
+      },
+      "position": [
+        -0.096,
+        0.0028,
+        -0.058
+      ],
+      "color": "0x1e3010"
+    }
+  ]
+}
