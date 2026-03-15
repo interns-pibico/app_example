@@ -52,3 +52,4 @@ alembic/versions/*.pyc
 .claude/
 .MEMORY.md
 *.MEMORY.md
+.playwright-mcp/
