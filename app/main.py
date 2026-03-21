@@ -3,11 +3,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-
 from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 from app.__version__ import __version__
@@ -48,7 +43,6 @@ def create_app() -> FastAPI:
     application.add_exception_handler(AppException, app_exception_handler)
 
     application.mount("/static", StaticFiles(directory="app/static"), name="static")
-    templates = Jinja2Templates(directory='templates')
 
     application.include_router(pages_router)
     application.include_router(v1_router)

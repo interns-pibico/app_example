@@ -2580,7 +2580,7 @@ async function _loadMunicipalityModule(poly) {
     const slug = _municipioSlug(poly.userData.name);
     if (!slug) return;
     try {
-        const mod = await import(`/static/js/${slug}/index.js?v=1772198673`);
+        const mod = await import(`/static/js/${slug}/index.js?v=1773992808`);
         await mod.load(scene, poly);
         // Mostrar los nuevos items si la plataforma ya está subida
         if (selectedPolygon === poly && poly.userData.buildings) {
@@ -2594,7 +2594,7 @@ function _preloadMunicipalityModule(poly) {
     if (poly.userData.modulePreloaded) return;
     poly.userData.modulePreloaded = true;
     const slug = _municipioSlug(poly.userData.name);
-    if (slug) import(`/static/js/${slug}/index.js?v=1772198673`).catch(() => {});
+    if (slug) import(`/static/js/${slug}/index.js?v=1773992808`).catch(() => {});
 }
 // ─────────────────────────────────────────────────────────────────────────────
 

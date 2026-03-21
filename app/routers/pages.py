@@ -26,12 +26,6 @@ def _render(request: Request, template_name: str) -> HTMLResponse:
     )
     return HTMLResponse(html)
 
-"""
-@router.get("/")
-async def index(request: Request):
-    return _render(request, "pages/asturias.html")
-"""
-
 @router.get("/")
 async def asturias(request: Request):
     return _render(request, "pages/asturias.html")
